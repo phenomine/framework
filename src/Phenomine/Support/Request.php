@@ -9,8 +9,8 @@
 
 namespace Phenomine\Support;
 
-class Request {
-
+class Request
+{
     protected Application $app;
 
     public static function get($param, $default = null)
@@ -26,14 +26,17 @@ class Request {
                 break;
             case 'PUT':
                 parse_str(file_get_contents('php://input'), $_PUT);
+
                 return $param ? (isset($_PUT[$param]) ? $_PUT[$param] : '') : $_PUT;
                 break;
             case 'PATCH':
                 parse_str(file_get_contents('php://input'), $_PATCH);
+
                 return $param ? (isset($_PATCH[$param]) ? $_PATCH[$param] : '') : $_PATCH;
                 break;
             case 'DELETE':
                 parse_str(file_get_contents('php://input'), $_DELETE);
+
                 return $param ? (isset($_DELETE[$param]) ? $_DELETE[$param] : '') : $_DELETE;
                 break;
             default:
@@ -55,14 +58,17 @@ class Request {
                 break;
             case 'PUT':
                 parse_str(file_get_contents('php://input'), $_PUT);
+
                 return $_PUT;
                 break;
             case 'PATCH':
                 parse_str(file_get_contents('php://input'), $_PATCH);
+
                 return $_PATCH;
                 break;
             case 'DELETE':
                 parse_str(file_get_contents('php://input'), $_DELETE);
+
                 return $_DELETE;
                 break;
             default:
@@ -84,14 +90,17 @@ class Request {
                 break;
             case 'PUT':
                 parse_str(file_get_contents('php://input'), $_PUT);
+
                 return isset($_PUT[$param]);
                 break;
             case 'PATCH':
                 parse_str(file_get_contents('php://input'), $_PATCH);
+
                 return isset($_PATCH[$param]);
                 break;
             case 'DELETE':
                 parse_str(file_get_contents('php://input'), $_DELETE);
+
                 return isset($_DELETE[$param]);
                 break;
             default:
@@ -165,11 +174,12 @@ class Request {
         return self::method() == 'DELETE';
     }
 
-    public static function getUri() {
+    public static function getUri()
+    {
         $uri = static::uri();
         $uri = explode('?', $uri);
         $uri = $uri[0];
-        $uri = '/' . trim($uri, '/');
+        $uri = '/'.trim($uri, '/');
 
         $root = base_path();
         $root = str_replace('\Phenomine\Support', '', $root);
@@ -188,7 +198,6 @@ class Request {
         return $uri;
     }
 
-
     public function __construct(Application $app)
     {
         $this->app = $app;
@@ -201,14 +210,14 @@ class Request {
 
         $params = $this->params();
         if (is_array($handler)) {
-            $controller = new $handler[0];
+            $controller = new $handler[0]();
             $controller->{$handler[1]}(...$params);
         } elseif (is_callable($handler)) {
             call_user_func_array($handler, $params);
         } else {
             // if the route is a controller
             $handler = explode('@', $handler);
-            $controllerName = '\\App\\Controllers\\' . $handler[0];
+            $controllerName = '\\App\\Controllers\\'.$handler[0];
             $controller = new $controllerName(...$params);
             $controller->{$handler[1]}();
         }
@@ -241,6 +250,7 @@ class Request {
                 $extract[] = $_uri[$position];
             }
         }
+
         return $extract;
     }
 }

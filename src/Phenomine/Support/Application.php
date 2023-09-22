@@ -4,9 +4,10 @@ namespace Phenomine\Support;
 
 use Phenomine\Contracts\Application\ApplicationContract;
 
-class Application extends ApplicationContract {
-
-    public function run() {
+class Application extends ApplicationContract
+{
+    public function run()
+    {
         if ($this->console != null) {
             $this->console->run();
         } else {
@@ -15,7 +16,8 @@ class Application extends ApplicationContract {
         }
     }
 
-    public function init() {
+    public function init()
+    {
         $this->loadRoutes();
         $this->route = Route::predictRoute();
     }

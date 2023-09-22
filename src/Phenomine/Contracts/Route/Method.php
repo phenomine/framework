@@ -14,7 +14,6 @@ class Method
     /**
      * The HTTP method.
      */
-
     const GET = 'GET';
 
     const POST = 'POST';

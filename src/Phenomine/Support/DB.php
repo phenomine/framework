@@ -36,7 +36,7 @@ class DB
             $this->port = config('database.port');
             $this->connected = true;
 
-            $this->connection = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->database . ";port=" . $this->port, $this->username, $this->password);
+            $this->connection = new PDO('mysql:host='.$this->host.';dbname='.$this->database.';port='.$this->port, $this->username, $this->password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -50,7 +50,7 @@ class DB
         }
     }
 
-    function __destruct()
+    public function __destruct()
     {
         $this->connected = false;
         $this->connection = null;
@@ -61,12 +61,13 @@ class DB
         echo $error;
     }
 
-    public function fetch($query, $parameters = array())
+    public function fetch($query, $parameters = [])
     {
         if ($this->connected === true) {
             try {
                 $query = $this->connection->prepare($query);
                 $query->execute($parameters);
+
                 return $query->fetch();
             } catch (PDOException $e) {
                 if ($this->errors === true) {
@@ -80,12 +81,13 @@ class DB
         }
     }
 
-    public function fetchAll($query, $parameters = array())
+    public function fetchAll($query, $parameters = [])
     {
         if ($this->connected === true) {
             try {
                 $query = $this->connection->prepare($query);
                 $query->execute($parameters);
+
                 return $query->fetchAll();
             } catch (PDOException $e) {
                 if ($this->errors === true) {
@@ -99,12 +101,13 @@ class DB
         }
     }
 
-    public function count($query, $parameters = array())
+    public function count($query, $parameters = [])
     {
         if ($this->connected === true) {
             try {
                 $query = $this->connection->prepare($query);
                 $query->execute($parameters);
+
                 return $query->rowCount();
             } catch (PDOException $e) {
                 if ($this->errors === true) {
@@ -118,7 +121,7 @@ class DB
         }
     }
 
-    public function insert($query, $parameters = array())
+    public function insert($query, $parameters = [])
     {
         if ($this->connected === true) {
             try {
@@ -136,7 +139,7 @@ class DB
         }
     }
 
-    public function update($query, $parameters = array())
+    public function update($query, $parameters = [])
     {
         if ($this->connected === true) {
             return $this->insert($query, $parameters);
@@ -145,7 +148,7 @@ class DB
         }
     }
 
-    public function delete($query, $parameters = array())
+    public function delete($query, $parameters = [])
     {
         if ($this->connected === true) {
             return $this->insert($query, $parameters);
@@ -159,6 +162,7 @@ class DB
         if ($this->connected === true) {
             try {
                 $query = $this->count("SHOW TABLES LIKE '$table'");
+
                 return ($query > 0) ? true : false;
             } catch (PDOException $e) {
                 if ($this->errors === true) {

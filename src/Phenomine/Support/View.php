@@ -7,7 +7,7 @@ class View
     public static function render($view, $data = [])
     {
         $sections = [];
-        $file = base_path() . '/views/' . $view . '.php';
+        $file = base_path().'/views/'.$view.'.php';
 
         // Check if @extends is exist
         $extended = false;
@@ -16,12 +16,12 @@ class View
         preg_match($pattern, $extends, $matches);
         if (count($matches) > 0) {
             $extended = true;
-            $file = base_path() . '/views/' . $matches[1] . '.php';
+            $file = base_path().'/views/'.$matches[1].'.php';
         }
 
         // Check if @section is exist on view
         if ($extended) {
-            $view_file = base_path() . '/views/' . $view . '.php';
+            $view_file = base_path().'/views/'.$view.'.php';
         } else {
             $view_file = $file;
         }
@@ -43,7 +43,7 @@ class View
             }
             if (count($startSectionMatches) > 0) {
                 $currentSection = $startSectionMatches[1];
-                $sections[$currentSection] = "";
+                $sections[$currentSection] = '';
             }
         }
 
@@ -65,7 +65,7 @@ class View
             extract($data);
             include_once $file;
         } else {
-            echo "View not found";
+            echo 'View not found';
         }
     }
 }
