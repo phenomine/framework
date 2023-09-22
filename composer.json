@@ -16,7 +16,10 @@
     "autoload": {
         "psr-4": {
             "Phenomine\\": "src/Phenomine"
-        }
+        },
+        "files": [
+            "src/Phenomine/helpers.php"
+        ]
     },
     "require": {
         "php": "^8.0",
