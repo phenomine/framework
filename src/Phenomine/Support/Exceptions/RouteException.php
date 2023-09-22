@@ -7,11 +7,11 @@
 |
 */
 
-namespace Phenomine\Support;
+namespace Phenomine\Support\Exceptions;
 
-class File
+use RuntimeException;
+
+class RouteException extends RuntimeException
 {
-    public static function exists($path) {
-        return file_exists($path);
-    }
+    //
 }
