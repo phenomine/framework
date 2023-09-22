@@ -7,7 +7,7 @@ use Symfony\Component\Console\Application;
 
 class ApplicationContract {
     protected $version;
-    protected Application $console;
+    protected $console;
     protected $routes;
     public $route;
     public $request;
