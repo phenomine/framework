@@ -18,7 +18,7 @@ if (! function_exists('base_path')) {
      * @return string
      */
     function base_path($path = '') {
-        return __DIR__ . '/../../' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
+        return __DIR__ . '/../../../../../' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 }
 
