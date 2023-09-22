@@ -1,0 +1,25 @@
+{
+    "name": "phenomine/framework",
+    "description": "The Phenomine framework.",
+    "keywords": ["framework", "phenomine"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/phenomine/framework/issues",
+        "source": "https://github.com/phenomine/framework"
+    },
+    "authors": [
+        {
+            "name": "Muhammad Fahli Saputra",
+            "email": "saputra@fahli.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Phenomine\\": "src/Phenomine"
+        }
+    },
+    "require": {
+        "php": "^8.0"
+    },
+    "minimum-stability": "dev"
+}
