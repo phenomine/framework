@@ -16,10 +16,15 @@
     "autoload": {
         "psr-4": {
             "Phenomine\\": "src/Phenomine"
-        }
+        },
+        "files": [
+            "src/Phenomine/helpers.php"
+        ]
     },
     "require": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "symfony/console": "6.2",
+        "symfony/error-handler": "6.2"
     },
     "minimum-stability": "dev"
 }
