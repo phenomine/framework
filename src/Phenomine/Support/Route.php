@@ -31,7 +31,7 @@ class Route extends Instance {
         return $instance;
     }
 
-    private static function split($uri)
+    public static function split($uri)
     {
         $uri = trim($uri, '/');
         $paths = explode('/', $uri);
@@ -217,28 +217,29 @@ class Route extends Instance {
     private static function checkRoute($uri, $route)
     {
         $count = static::countSplitPath($uri);
+        $_uri = static::split($uri);
         $index = -1;
         $valid = true;
-        if ($count > 0) {
-            foreach (static::split($uri) as $path) {
-                $index++;
 
-                if (!isset($route->details[$index])) {
-                    $valid = false;
-                    break;
+        if (count($route->details) < $count) {
+            return false;
+        }
+
+        foreach ($route->details as $path) {
+            $index++;
+            if (!$path->static) {
+                if (!$path->optional) {
+                    if (!isset($_uri[$index])) {
+                        $valid = false;
+                    }
                 }
-
-                $_route = $route->details[$index];
-                if ($_route->static) {
-                    if ($path != $_route->name) {
+            } else {
+                if (isset($_uri[$index])) {
+                    if ($path->name != $_uri[$index]) {
                         $valid = false;
                     }
                 } else {
-                    if ($_route->optional) {
-                        if ($path != $_route->name) {
-                            $valid = false;
-                        }
-                    }
+                    $valid = false;
                 }
             }
         }

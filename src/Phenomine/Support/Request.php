@@ -10,6 +10,9 @@
 namespace Phenomine\Support;
 
 class Request {
+
+    protected Application $app;
+
     public static function get($param, $default = null)
     {
         $method = $_SERVER['REQUEST_METHOD'];
@@ -183,5 +186,61 @@ class Request {
         }
 
         return $uri;
+    }
+
+
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+    }
+
+    public function handle()
+    {
+        $route = $this->app->route;
+        $handler = $route->handler;
+
+        $params = $this->params();
+        if (is_array($handler)) {
+            $controller = new $handler[0];
+            $controller->{$handler[1]}(...$params);
+        } elseif (is_callable($handler)) {
+            call_user_func_array($handler, $params);
+        } else {
+            // if the route is a controller
+            $handler = explode('@', $handler);
+            $controllerName = 'App\\Controllers\\' . $handler[0];
+            $controller = new $controllerName(...$params);
+            $controller->{$handler[1]}();
+        }
+    }
+
+    public function params($key = '')
+    {
+        $uri = static::getUri();
+        $_uri = Route::split($uri);
+        $route = $this->app->route;
+        $params = $route->params;
+
+        if ($key) {
+            foreach ($params as $param) {
+                if ($param->name == $key) {
+                    $position = $param->position;
+                    if (isset($_uri[$position])) {
+                        return $_uri[$position];
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        $extract = [];
+        foreach ($params as $param) {
+            $position = $param->position;
+            if (isset($uri[$position])) {
+                $extract[] = $_uri[$position];
+            }
+        }
+        return $extract;
     }
 }
