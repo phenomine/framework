@@ -9,8 +9,8 @@
 
 namespace Phenomine\Contracts\Route;
 
-class Instance {
-
+class Instance
+{
     /**
      * The HTTP method.
      */

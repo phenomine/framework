@@ -15,8 +15,8 @@ use Phenomine\Contracts\Route\Param;
 use Phenomine\Contracts\Route\Path;
 use Phenomine\Support\Exceptions\RouteException;
 
-class Route extends Instance {
-
+class Route extends Instance
+{
     private function set($method, $uri, $handler)
     {
         $instance = new Instance();
@@ -35,12 +35,13 @@ class Route extends Instance {
     {
         $uri = trim($uri, '/');
         $paths = explode('/', $uri);
-        $result = array();
+        $result = [];
         foreach ($paths as $path) {
             if (!(trim($path) == '' || trim($path) == '\\')) {
                 $result[] = $path;
             }
         }
+
         return $result;
     }
 
@@ -51,9 +52,11 @@ class Route extends Instance {
             $callback($path, $paths);
         }
     }
+
     private static function countSplitPath($uri)
     {
         $paths = static::split($uri);
+
         return count($paths);
     }
 
@@ -93,6 +96,7 @@ class Route extends Instance {
         });
 
         $_routes[] = $instance;
+
         return $this;
     }
 
@@ -107,7 +111,7 @@ class Route extends Instance {
         }
 
         if (empty($this->uri)) {
-            throw new RouteException("Route does not exist");
+            throw new RouteException('Route does not exist');
         }
         $this->name = $name;
 
@@ -124,6 +128,7 @@ class Route extends Instance {
     public static function get($route, $handler)
     {
         $instance = new Route();
+
         return $instance->addRoute(Method::GET, $route, $handler);
     }
 
@@ -150,6 +155,7 @@ class Route extends Instance {
     public function middleware($middleware)
     {
         $this->middlewares[] = $middleware;
+
         return $this;
     }
 
@@ -186,6 +192,7 @@ class Route extends Instance {
     public static function getRoutes()
     {
         global $_routes;
+
         return $_routes;
     }
 
@@ -197,6 +204,7 @@ class Route extends Instance {
                 return $route;
             }
         }
+
         return null;
     }
 
