@@ -208,7 +208,7 @@ class Request {
         } else {
             // if the route is a controller
             $handler = explode('@', $handler);
-            $controllerName = 'App\\Controllers\\' . $handler[0];
+            $controllerName = '\\App\\Controllers\\' . $handler[0];
             $controller = new $controllerName(...$params);
             $controller->{$handler[1]}();
         }

@@ -113,7 +113,7 @@ class Route extends Instance {
 
         // change name on global routes
         foreach ($_routes as $key => $route) {
-            if ($route->route == $this->uri) {
+            if ($route->uri == $this->uri) {
                 $_routes[$key]->name = $name;
             }
         }
