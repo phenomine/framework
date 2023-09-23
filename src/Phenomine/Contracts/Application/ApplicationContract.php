@@ -7,6 +7,13 @@ use Symfony\Component\Console\Application;
 
 class ApplicationContract
 {
+    /**
+     * The Phenomine framework version.
+     *
+     * @var string
+     */
+    const VERSION = '1.0.0';
+    
     protected $version;
     protected $console;
     public $routes;
@@ -29,5 +36,10 @@ class ApplicationContract
         foreach (glob(base_path().'/routes/*.php') as $file) {
             require_once $file;
         }
+    }
+
+    public static function version()
+    {
+        return static::VERSION;
     }
 }
