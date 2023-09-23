@@ -19,7 +19,7 @@ class ViewContract
     public function __construct()
     {
         $this->latte = new Engine();
-        $this->latte->setLoader(new FileLoader(base_path('res/views')));
+        $this->latte->setLoader(new Loader(base_path('res/views')));
         $this->latte->setTempDirectory(storage_path('cache'));
     }
 }
