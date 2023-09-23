@@ -32,8 +32,12 @@ class Application extends ApplicationContract
         preg_match($pattern, $file, $matches);
         preg_match($classPattern, $file, $classMatches);
         $namespace = null;
+
+        $classPattern = trim($classMatches[1], '/');
+        $classPattern = explode(' ', $classPattern);
+        $classPattern = trim($classPattern[0]);
         if (!empty($matches)) {
-            $namespace = $matches[1].'\\'.$classMatches[1];
+            $namespace = $matches[1] . '\\' . $classPattern;
         }
 
         return $namespace;
