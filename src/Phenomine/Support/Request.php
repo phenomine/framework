@@ -206,6 +206,11 @@ class Request
     public function handle()
     {
         $route = $this->app->route;
+
+        if (!$route) {
+            return static::abort(404);
+        }
+
         $handler = $route->handler;
 
         $params = $this->params();
@@ -252,5 +257,13 @@ class Request
         }
 
         return $extract;
+    }
+
+    public static function abort($code)
+    {
+        http_response_code($code);
+        $view = new View(__DIR__.'/../views');
+        $view->render('errors.'.$code);
+        exit;
     }
 }

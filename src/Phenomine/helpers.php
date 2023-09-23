@@ -8,6 +8,7 @@
 */
 
 use Phenomine\Support\File;
+use Phenomine\Support\Request;
 use Phenomine\Support\Str;
 use Phenomine\Support\View;
 
@@ -149,5 +150,20 @@ if (!function_exists('view')) {
         $instance = new View();
 
         return $instance->render($view, $data);
+    }
+}
+
+if (!function_exists('abort')) {
+    /**
+     * Abort the application.
+     *
+     * @param int    $code
+     * @param string $message
+     *
+     * @return void
+     */
+    function abort($code)
+    {
+        Request::abort($code);
     }
 }
