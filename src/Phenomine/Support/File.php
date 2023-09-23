@@ -34,4 +34,38 @@ class File
 
         return $files;
     }
+
+    public static function isFile($path)
+    {
+        return is_file($path);
+    }
+
+    public static function isDirectory($path)
+    {
+        return is_dir($path);
+    }
+
+
+
+    public static function findFilesFromString($origin, $string, $extension = '.php') {
+        $keys = Str::splitDot($string);
+        $file = null;
+        $index = -1;
+
+        // trim origin /
+        $origin = rtrim($origin, '/');
+
+        foreach ($keys as $key) {
+            $index++;
+            if (static::isDirectory($origin.'/'.$key)) {
+                $origin = $origin.'/'.$key;
+            } else {
+                if (static::exists($origin.'/'.$key.$extension)) {
+                    $file = $origin.'/'.$key.$extension;
+                }
+            }
+        }
+
+        return $file;
+    }
 }
