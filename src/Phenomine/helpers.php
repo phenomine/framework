@@ -9,6 +9,7 @@
 
 use Phenomine\Support\File;
 use Phenomine\Support\Str;
+use Phenomine\Support\View;
 
 if (!function_exists('app')) {
     /**
@@ -131,5 +132,20 @@ if (!function_exists('config')) {
         }
 
         return $config;
+    }
+}
+
+if (! function_exists('view')) {
+    /**
+     * Get the view.
+     *
+     * @param string $view
+     * @param array $data
+     *
+     * @return string
+     */
+    function view($view, $data = []) {
+        $instance = new View();
+        return $instance->render($view, $data);
     }
 }
