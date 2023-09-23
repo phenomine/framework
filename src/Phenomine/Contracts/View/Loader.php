@@ -58,7 +58,7 @@ class Loader implements \Latte\Loader
 	{
 		if ($this->baseDir || !preg_match('#/|\\\\|[a-z][a-z0-9+.-]*:#iA', $file)) {
             $find = File::findFilesFromString($this->baseDir, $file, '.latte');
-            if (!empty($find)) {
+            if (empty($find)) {
                 throw new \Latte\RuntimeException("Template '$file' not found.");
             }
 			//$file = $this->normalizePath($find);
