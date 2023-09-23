@@ -153,16 +153,17 @@ if (!function_exists('view')) {
     }
 }
 
-if (! function_exists('abort')) {
+if (!function_exists('abort')) {
     /**
      * Abort the application.
      *
-     * @param int $code
+     * @param int    $code
      * @param string $message
      *
      * @return void
      */
-    function abort($code) {
+    function abort($code)
+    {
         Request::abort($code);
     }
 }

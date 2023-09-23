@@ -259,7 +259,6 @@ class Request
         return $extract;
     }
 
-
     public static function abort($code)
     {
         http_response_code($code);
