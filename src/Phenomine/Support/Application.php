@@ -37,7 +37,7 @@ class Application extends ApplicationContract
         $classPattern = explode(' ', $classPattern);
         $classPattern = trim($classPattern[0]);
         if (!empty($matches)) {
-            $namespace = $matches[1] . '\\' . $classPattern;
+            $namespace = $matches[1].'\\'.$classPattern;
         }
 
         return $namespace;
