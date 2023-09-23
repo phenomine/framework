@@ -20,5 +20,6 @@ class ViewContract
     {
         $this->latte = new Engine();
         $this->latte->setLoader(new FileLoader(base_path('res/views')));
+        $this->latte->setTempDirectory(storage_path('cache'));
     }
 }

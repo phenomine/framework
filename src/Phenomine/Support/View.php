@@ -2,12 +2,12 @@
 
 namespace Phenomine\Support;
 
-use Latte\Engine;
+use Phenomine\Contracts\View\ViewContract;
 use Phenomine\Support\Exceptions\ViewException;
 
-class View
+class View extends ViewContract
 {
-    public static function render($view, $data = [])
+    public function render($view, $data = [])
     {
 
         $view = File::findFilesFromString(base_path('res/views'), $view, '.latte');
@@ -16,11 +16,7 @@ class View
             throw new ViewException('View not found');
         }
 
-        $latte = new Engine();
-        // cache directory
-        $latte->setTempDirectory(storage_path('cache'));
-
         // render to output
-        $latte->render($view, $data);
+        $this->latte->render($view, $data);
     }
 }
