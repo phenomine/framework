@@ -10,7 +10,6 @@
 namespace Phenomine\Contracts\View;
 
 use Latte\Engine;
-use Latte\Loaders\FileLoader;
 
 class ViewContract
 {
