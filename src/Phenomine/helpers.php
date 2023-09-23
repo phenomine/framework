@@ -135,17 +135,19 @@ if (!function_exists('config')) {
     }
 }
 
-if (! function_exists('view')) {
+if (!function_exists('view')) {
     /**
      * Get the view.
      *
      * @param string $view
-     * @param array $data
+     * @param array  $data
      *
      * @return string
      */
-    function view($view, $data = []) {
+    function view($view, $data = [])
+    {
         $instance = new View();
+
         return $instance->render($view, $data);
     }
 }
