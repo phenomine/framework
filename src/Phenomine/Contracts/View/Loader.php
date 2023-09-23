@@ -30,11 +30,8 @@ class Loader implements \Latte\Loader
 	 */
 	public function getContent(string $fileName): string
 	{
-		$file = $this->baseDir . $fileName;
-		if ($this->baseDir && !str_starts_with($this->normalizePath($file), $this->baseDir)) {
-			throw new \Latte\RuntimeException("Template '$file' is not within the allowed path '{$this->baseDir}'.");
-
-		} elseif (!is_file($file)) {
+		$file = $fileName;
+		if (!is_file($file)) {
 			throw new \Latte\RuntimeException("Missing template file '$file'.");
 
 		} elseif ($this->isExpired($fileName, time())) {
