@@ -39,7 +39,7 @@ if (!function_exists('base_path')) {
             return $basePath.($path ? DIRECTORY_SEPARATOR.$path : $path);
         }
 
-        return __DIR__.'/../../../../../'.($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return __DIR__.'/../../../../..'.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 }
 
