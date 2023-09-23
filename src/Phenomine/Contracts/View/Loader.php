@@ -64,7 +64,8 @@ class Loader extends \Latte\Loader
             if (!empty($find)) {
                 throw new \Latte\RuntimeException("Template '$file' not found.");
             }
-			$file = $this->normalizePath($find);
+			//$file = $this->normalizePath($find);
+            $file = $find;
 		}
 
 		return $file;
