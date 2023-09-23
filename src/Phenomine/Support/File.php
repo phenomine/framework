@@ -45,9 +45,8 @@ class File
         return is_dir($path);
     }
 
-
-
-    public static function findFilesFromString($origin, $string, $extension = '.php') {
+    public static function findFilesFromString($origin, $string, $extension = '.php')
+    {
         $keys = Str::splitDot($string);
         $file = null;
         $index = -1;

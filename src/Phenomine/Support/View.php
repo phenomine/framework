@@ -9,7 +9,6 @@ class View extends ViewContract
 {
     public function render($view, $data = [])
     {
-
         $view = File::findFilesFromString(base_path('res/views'), $view, '.latte');
 
         if (!$view) {
