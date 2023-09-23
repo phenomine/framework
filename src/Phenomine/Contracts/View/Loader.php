@@ -12,7 +12,7 @@ namespace Phenomine\Contracts\View;
 use Latte\Strict;
 use Phenomine\Support\File;
 
-class Loader extends \Latte\Loader
+class Loader implements \Latte\Loader
 {
     use Strict;
 
