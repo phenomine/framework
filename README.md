@@ -1,5 +1,5 @@
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="/assets/phenomine_text_logo.svg" width="400"></a></p>
+<p align="center"><a href="https://github.com/phenomine/phenomine" target="_blank"><img src="/assets/phenomine_text_logo.svg" width="400"></a></p>
 
 ## The Phenomine Framework
 
