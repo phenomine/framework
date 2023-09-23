@@ -18,7 +18,7 @@ class ViewContract
 
     public function __construct($basePath = null)
     {
-        if ($basePath) {
+        if ($basePath != null) {
             $this->basePath = $basePath;
         } else {
             $this->basePath = base_path('res/views');
