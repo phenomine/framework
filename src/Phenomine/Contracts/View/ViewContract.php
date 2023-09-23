@@ -13,7 +13,7 @@ use Latte\Engine;
 
 class ViewContract
 {
-    protected $basePath;
+    public $basePath;
     protected $latte;
 
     public function __construct($basePath = null)
