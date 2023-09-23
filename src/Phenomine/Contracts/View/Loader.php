@@ -21,7 +21,7 @@ class Loader implements \Latte\Loader
 
 	public function __construct(?string $baseDir = null)
 	{
-		$this->baseDir = $baseDir ? $this->normalizePath("$baseDir/") : null;
+		$this->baseDir = $baseDir ? $baseDir : null;
 	}
 
 
