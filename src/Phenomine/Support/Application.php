@@ -28,10 +28,12 @@ class Application extends ApplicationContract
     {
         $file = file_get_contents($file);
         $pattern = '/namespace (.*)\;/';
+        $classPattern = '/class (.*)\s/';
         preg_match($pattern, $file, $matches);
+        preg_match($classPattern, $file, $classMatches);
         $namespace = null;
         if (!empty($matches)) {
-            $namespace = $matches[1];
+            $namespace = $matches[1].'\\'.$classMatches[1];
         }
 
         return $namespace;
