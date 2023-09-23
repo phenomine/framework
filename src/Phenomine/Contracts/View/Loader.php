@@ -53,7 +53,7 @@ class Loader implements \Latte\Loader
     public function getReferredName(string $file, string $referringFile): string
     {
         if ($this->baseDir || !preg_match('#/|\\\\|[a-z][a-z0-9+.-]*:#iA', $file)) {
-            $find = File::findFilesFromString($this->baseDir, $file, '.latte');
+            $find = File::findFilesFromString($this->baseDir, $file, '.latte.php');
             if (empty($find)) {
                 throw new \Latte\RuntimeException("Template '$file' not found.");
             }
