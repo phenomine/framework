@@ -10,6 +10,20 @@
 use Phenomine\Support\File;
 use Phenomine\Support\Str;
 
+if (!function_exists('app')) {
+    /**
+     * Get the app instance.
+     *
+     * @return \Phenomine\Support\Application
+     */
+    function app()
+    {
+        global $_app;
+
+        return $_app;
+    }
+}
+
 if (!function_exists('base_path')) {
     /**
      * Get the base path of the Phenomine installation.
@@ -20,6 +34,11 @@ if (!function_exists('base_path')) {
      */
     function base_path($path = '')
     {
+        global $basePath;
+        if ($basePath) {
+            return $basePath.($path ? DIRECTORY_SEPARATOR.$path : $path);
+        }
+
         return __DIR__.'/../../../../../'.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 }

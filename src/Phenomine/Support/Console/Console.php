@@ -2,19 +2,22 @@
 
 namespace Phenomine\Support\Console;
 
+use Phenomine\Support\Application;
+use Phenomine\Support\File;
+
 class Console
 {
     public static function getAllConsoleNamespace()
     {
-        $consoleNamespace = [];
-        $consolePath = __DIR__.'/Commands/';
-        $consoleFiles = scandir($consolePath);
-        foreach ($consoleFiles as $consoleFile) {
-            if ($consoleFile != '.' && $consoleFile != '..') {
-                $consoleNamespace[] = 'Phenomine\\Support\\Console\\Commands\\'.str_replace('.php', '', $consoleFile);
+        $namespaces = [];
+        $files = File::allFiles(__DIR__.'/Commands/', true);
+        foreach ($files as $file) {
+            $namespace = Application::getNamespace($file);
+            if ($namespace != null) {
+                $namespaces[] = $namespace;
             }
         }
 
-        return $consoleNamespace;
+        return $namespaces;
     }
 }
