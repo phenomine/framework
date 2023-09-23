@@ -13,12 +13,18 @@ use Latte\Engine;
 
 class ViewContract
 {
+    protected $basePath;
     protected $latte;
 
-    public function __construct()
+    public function __construct($basePath = null)
     {
+        if ($basePath) {
+            $this->basePath = $basePath;
+        } else {
+            $this->basePath = base_path('res/views');
+        }
         $this->latte = new Engine();
-        $this->latte->setLoader(new Loader(base_path('res/views')));
+        $this->latte->setLoader(new Loader($this->basePath));
         $this->latte->setTempDirectory(storage_path('framework/views'));
     }
 }
