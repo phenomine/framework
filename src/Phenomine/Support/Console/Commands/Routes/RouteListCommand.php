@@ -21,7 +21,7 @@ class RouteListCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         app()->loadRoutes();
-        $routes = app()->routes;
+        global $_routes;
 
         $output->writeln([
             '',
@@ -36,7 +36,7 @@ class RouteListCommand extends Command
             '',
         ]);
 
-        foreach ($routes as $route) {
+        foreach ($_routes as $route) {
             $output->writeln([
                 '<fg=green;options=bold;>'.$route->method.'</>',
                 '<fg=green;options=bold;>'.$route->uri.'</>',

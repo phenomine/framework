@@ -9,7 +9,7 @@ class View extends ViewContract
 {
     public function render($view, $data = [])
     {
-        $view = File::findFilesFromString(base_path('res/views'), $view, '.latte');
+        $view = File::findFilesFromString(base_path('res/views'), $view, '.latte.php');
 
         if (!$view) {
             throw new ViewException('View not found');

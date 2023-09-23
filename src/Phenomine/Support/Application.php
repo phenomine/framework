@@ -9,6 +9,8 @@ class Application extends ApplicationContract
     public function run()
     {
         if ($this->console != null) {
+            global $_app;
+            $_app = $this;
             $this->console->run();
         } else {
             global $_app;
