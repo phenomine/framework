@@ -36,7 +36,8 @@ class ClearViewCacheCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function clearCache($path) {
+    private function clearCache($path)
+    {
         $files = File::allFiles($path, true);
         foreach ($files as $file) {
             if (File::isFile($file)) {
