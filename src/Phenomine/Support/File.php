@@ -15,4 +15,22 @@ class File
     {
         return file_exists($path);
     }
+
+    public static function allFiles($path, $recursive = false)
+    {
+        $files = [];
+        $dir = scandir($path);
+        foreach ($dir as $file) {
+            if ($file != '.' && $file != '..') {
+                if (is_dir($path . '/' . $file)) {
+                    if ($recursive) {
+                        $files = array_merge($files, self::allFiles($path . '/' . $file, $recursive));
+                    }
+                } else {
+                    $files[] = $path . '/' . $file;
+                }
+            }
+        }
+        return $files;
+    }
 }

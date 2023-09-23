@@ -9,7 +9,7 @@ class ApplicationContract
 {
     protected $version;
     protected $console;
-    protected $routes;
+    public $routes;
     public $route;
     public $request;
 
