@@ -19,6 +19,7 @@ if (!function_exists('app')) {
     function app()
     {
         global $_app;
+
         return $_app;
     }
 }
@@ -35,9 +36,10 @@ if (!function_exists('base_path')) {
     {
         global $basePath;
         if ($basePath) {
-            return $basePath . ($path ? DIRECTORY_SEPARATOR . $path : $path);
+            return $basePath.($path ? DIRECTORY_SEPARATOR.$path : $path);
         }
-        return __DIR__ . '/../../../../../' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
+
+        return __DIR__.'/../../../../../'.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 }
 
@@ -131,4 +133,3 @@ if (!function_exists('config')) {
         return $config;
     }
 }
-

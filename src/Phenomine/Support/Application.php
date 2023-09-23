@@ -33,6 +33,7 @@ class Application extends ApplicationContract
         if (!empty($matches)) {
             $namespace = $matches[1];
         }
+
         return $namespace;
     }
 }
