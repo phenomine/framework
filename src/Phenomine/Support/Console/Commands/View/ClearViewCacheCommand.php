@@ -1,16 +1,16 @@
 <?php
 
-namespace Phenomine\Support\Console\Commands\Cache;
+namespace Phenomine\Support\Console\Commands\View;
 
 use Phenomine\Support\File;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CacheClearCommand extends Command
+class ClearViewCacheCommand extends Command
 {
-    protected $name = 'cache:clear ';
-    protected $description = 'Clear all cached files';
+    protected $name = 'view:clear ';
+    protected $description = 'Clear all cached views';
 
     protected function configure()
     {
@@ -21,7 +21,7 @@ class CacheClearCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $cachePath = base_path('storage/cache');
+        $cachePath = base_path('storage/framework/views');
 
         if (file_exists($cachePath)) {
             $this->clearCache($cachePath);
