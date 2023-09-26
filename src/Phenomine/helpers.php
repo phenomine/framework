@@ -168,7 +168,7 @@ if (!function_exists('abort')) {
     }
 }
 
-if (! function_exists('request')) {
+if (!function_exists('request')) {
     /**
      * Get the request instance.
      *
@@ -180,6 +180,7 @@ if (! function_exists('request')) {
             return Request::get($key, $default);
         } else {
             $request = new Request(app());
+
             return $request;
         }
     }
