@@ -167,3 +167,20 @@ if (!function_exists('abort')) {
         Request::abort($code);
     }
 }
+
+if (! function_exists('request')) {
+    /**
+     * Get the request instance.
+     *
+     * @return \Phenomine\Support\Request|string|array|null
+     */
+    function request($key = null, $default = null)
+    {
+        if ($key) {
+            return Request::get($key, $default);
+        } else {
+            $request = new Request(app());
+            return $request;
+        }
+    }
+}
