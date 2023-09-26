@@ -68,9 +68,9 @@ class File
         return $file;
     }
 
-    public static function getFileName($path)
+    public static function getNameWithoutExt($path)
     {
-        return pathinfo($path, PATHINFO_FILENAME);
+        return pathinfo($path, PATHINFO_BASENAME);
     }
 
     public static function getExtension($path)
