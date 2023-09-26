@@ -134,22 +134,26 @@ class Route extends Instance
 
     public static function post($route, $handler)
     {
-        return static::addRoute(Method::POST, $route, $handler);
+        $instance = new Route();
+        return $instance->addRoute(Method::POST, $route, $handler);
     }
 
     public static function put($route, $handler)
     {
-        return static::addRoute(Method::PUT, $route, $handler);
+        $instance = new Route();
+        return $instance->addRoute(Method::PUT, $route, $handler);
     }
 
     public static function patch($route, $handler)
     {
-        return static::addRoute(Method::PATCH, $route, $handler);
+        $instance = new Route();
+        return $instance->addRoute(Method::PATCH, $route, $handler);
     }
 
     public static function delete($route, $handler)
     {
-        return static::addRoute(Method::DELETE, $route, $handler);
+        $instance = new Route();
+        return $instance->addRoute(Method::DELETE, $route, $handler);
     }
 
     public function middleware($middleware)
