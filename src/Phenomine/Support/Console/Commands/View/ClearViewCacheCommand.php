@@ -42,7 +42,7 @@ class ClearViewCacheCommand extends Command
         foreach ($files as $file) {
             if (File::isFile($file)) {
 
-                if (File::getFileName($file) == '.gitignore') {
+                if (File::getName($file) == '.gitignore') {
                     continue;
                 }
                 
