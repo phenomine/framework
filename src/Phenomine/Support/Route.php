@@ -132,22 +132,22 @@ class Route extends Instance
         return $instance->addRoute(Method::GET, $route, $handler);
     }
 
-    public function post($route, $handler)
+    public static function post($route, $handler)
     {
         return static::addRoute(Method::POST, $route, $handler);
     }
 
-    public function put($route, $handler)
+    public static function put($route, $handler)
     {
         return static::addRoute(Method::PUT, $route, $handler);
     }
 
-    public function patch($route, $handler)
+    public static function patch($route, $handler)
     {
         return static::addRoute(Method::PATCH, $route, $handler);
     }
 
-    public function delete($route, $handler)
+    public static function delete($route, $handler)
     {
         return static::addRoute(Method::DELETE, $route, $handler);
     }
@@ -211,10 +211,11 @@ class Route extends Instance
     public static function predictRoute()
     {
         $uri = Request::getUri();
+        $method = Request::method();
         global $_routes;
 
         foreach ($_routes as $route) {
-            if (static::checkRoute($uri, $route)) {
+            if (static::checkRoute($uri, $route, $method)) {
                 return $route;
             }
         }
@@ -222,12 +223,16 @@ class Route extends Instance
         return null;
     }
 
-    private static function checkRoute($uri, $route)
+    private static function checkRoute($uri, $route, $method)
     {
         $count = static::countSplitPath($uri);
         $_uri = static::split($uri);
         $index = -1;
         $valid = true;
+
+        if ($route->method != $method) {
+            return false;
+        }
 
         if (count($route->details) < $count) {
             return false;
