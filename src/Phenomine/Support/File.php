@@ -68,7 +68,7 @@ class File
         return $file;
     }
 
-    public static function getNameWithoutExt($path)
+    public static function getName($path)
     {
         return pathinfo($path, PATHINFO_BASENAME);
     }
