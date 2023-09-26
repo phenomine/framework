@@ -41,6 +41,11 @@ class ClearViewCacheCommand extends Command
         $files = File::allFiles($path, true);
         foreach ($files as $file) {
             if (File::isFile($file)) {
+
+                if (File::getFileName($file) == '.gitignore') {
+                    continue;
+                }
+                
                 unlink($file);
             }
         }
