@@ -27,5 +27,6 @@
         "symfony/error-handler": "6.2",
         "latte/latte": "^3.0@dev"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
