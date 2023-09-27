@@ -4,6 +4,8 @@ namespace Phenomine\Contracts\Application;
 
 use Phenomine\Support\Console\Console;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
+use Phenomine\Contracts\Command\Command as PhenomineCommand;
 
 class ApplicationContract
 {
@@ -29,7 +31,8 @@ class ApplicationContract
             // check if namespace is symfony or phenomine
             $console = new $console();
 
-            if (method_exists($console, 'getCommand')) {
+            // determine if console is a symfony console or phenomine console
+            if ($console instanceof PhenomineCommand) {
                 $console = $console->getCommand();
             }
 
