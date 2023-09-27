@@ -2,11 +2,7 @@
 
 namespace Phenomine\Support\Console\Commands;
 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputDefinition;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
+use Phenomine\Contracts\Command\Command;
 
 class ServeCommand extends Command
 {
@@ -15,28 +11,7 @@ class ServeCommand extends Command
 
     protected function configure()
     {
-        $this
-            ->setName($this->name)
-            ->setDescription($this->description)
-            ->setDefinition(
-                new InputDefinition([
-                    new InputOption(
-                        'host',
-                        null,
-                        InputOption::VALUE_OPTIONAL,
-                        'The host address to serve the application on',
-                        'localhost'
-                    ),
-
-                    new InputOption(
-                        'port',
-                        null,
-                        InputOption::VALUE_OPTIONAL,
-                        'The port to serve the application on',
-                        8000
-                    ),
-                ])
-            );
+        $this->apply();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
