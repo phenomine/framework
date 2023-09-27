@@ -14,6 +14,16 @@ class ServeCommand extends Command
     ];
     protected $arguments = [];
 
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     protected function handle()
     {
         $host = $this->option('host', 'localhost');
