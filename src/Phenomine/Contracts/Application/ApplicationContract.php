@@ -25,7 +25,15 @@ class ApplicationContract
         $this->console = new Application();
         $consoleNamespace = Console::getAllConsoleNamespace();
         foreach ($consoleNamespace as $console) {
-            $this->console->add(new $console());
+
+            // check if namespace is symfony or phenomine
+            $console = new $console();
+
+            if (method_exists($console, 'getCommand')) {
+                $console = $console->getCommand();
+            }
+
+            $this->console->add($console);
         }
 
         return $this;

@@ -23,8 +23,6 @@ class Command extends SymfonyCommand
         parent::__construct($this->name);
         
         $this->configure();
-
-        return $this;
     }
 
     protected function configure()
@@ -54,5 +52,9 @@ class Command extends SymfonyCommand
         $method = method_exists($this, 'handle') ? 'handle' : '__invoke';
 
         return (int) app()->call([$this, $method]);
+    }
+
+    public function getCommand() {
+        return $this;
     }
 }
