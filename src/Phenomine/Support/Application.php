@@ -44,4 +44,19 @@ class Application extends ApplicationContract
 
         return $namespace;
     }
+
+    /**
+     * Call a callable
+     * 
+     * @param array $callable
+     * @param array $parameters
+     */
+    public function call($callable, $parameters = [])
+    {
+        $class = $callable[0];
+        $method = $callable[1];
+
+        $class = new $class();
+        $class->{$method}(...$parameters);
+    }
 }
