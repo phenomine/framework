@@ -15,4 +15,9 @@ class Str
     {
         return explode('.', $string);
     }
+
+    public static function length($string)
+    {
+        return strlen($string);
+    }
 }

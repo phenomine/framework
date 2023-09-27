@@ -10,6 +10,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Command extends SymfonyCommand
 {
+    use InteractsWithIO;
+
     protected $name;
     protected $description;
     protected $options = [];
@@ -17,13 +19,13 @@ class Command extends SymfonyCommand
 
     /**
      * Define an option for the command.
-     * 
+     *
      * @param string $name
      * @param string $shortcut
      * @param OptionType|int $optionType
      * @param string $description
      * @param mixed $default
-     * 
+     *
      * @return InputOption|mixed
      */
     protected function defineOption(string $name, string $shortcut = null, int $optionType = null, string $description = '', $default = null)
@@ -36,12 +38,12 @@ class Command extends SymfonyCommand
 
     /**
      * Define an argument for the command.
-     * 
+     *
      * @param string $name
      * @param int $argumentMode
      * @param string $description
      * @param mixed $default
-     * 
+     *
      * @return InputArgument|mixed
      */
     protected function defineArgument(string $name, int $argumentMode = null, string $description = '', $default = null)
@@ -71,26 +73,11 @@ class Command extends SymfonyCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        
-        $host = $input->getOption('host').':'.$input->getOption('port');
+        $this->input = $input;
+        $this->output = $output;
 
-        // validate host
-        if (!filter_var('http://'.$host, FILTER_VALIDATE_URL)) {
-            $output->writeln([
-                '',
-                '<error>Invalid host address</error>',
-                '<fg=yellow;>'.$host.' is not a valid host address. Phenomine Development Server exited unexpectedly.</>',
-            ]);
+        $method = method_exists($this, 'handle') ? 'handle' : '__invoke';
 
-            return Command::FAILURE;
-        }
-
-        $command = sprintf('%s -S %s -t public', PHP_BINARY, $host);
-        $output->writeln([
-            '',
-            '<fg=green;options=bold;>Starting Phenomine Development Server</>',
-            '<fg=green;>Listening on http://'.$host.'</>',
-        ]);
-        exec($command);
+        return (int) $this->call([$this, $method]);
     }
 }
