@@ -6,7 +6,7 @@ use Phenomine\Contracts\Command\Command;
 
 class ServeCommand extends Command
 {
-    protected $name = 'serve ';
+    protected $name = 'serve';
     protected $description = 'Serve the application on the PHP development server';
     protected $options = [
         '--host?' => 'The host address to serve the application on',

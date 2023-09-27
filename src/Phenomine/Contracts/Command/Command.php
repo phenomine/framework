@@ -10,8 +10,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Command extends SymfonyCommand
 {
-    private $phenomine;
-
     use InteractsWithIO, Parser;
 
     protected $name;
@@ -21,6 +19,13 @@ class Command extends SymfonyCommand
 
     
     public function __construct()
+    {
+        parent::__construct($this->name);
+        
+        $this->configure();
+    }
+
+    protected function configure()
     {
         $this->setName($this->name);
         $this->setDescription($this->description);
