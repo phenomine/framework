@@ -23,6 +23,8 @@ class Command extends SymfonyCommand
         parent::__construct($this->name);
         
         $this->configure();
+
+        return $this;
     }
 
     protected function configure()
