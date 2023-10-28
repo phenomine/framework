@@ -36,6 +36,9 @@ class ApplicationContract
                 $console = $console->getCommand();
             }
 
+            // get instance of symfony command
+            
+
             $this->console->add($console);
         }
 

@@ -10,7 +10,7 @@ class Console
     public static function getAllConsoleNamespace()
     {
         $namespaces = [];
-        $files = File::allFiles(__DIR__.'/Commands/', true);
+        $files = File::allFiles(__DIR__.'/NewCommands/', true);
         foreach ($files as $file) {
             $namespace = Application::getNamespace($file);
             if ($namespace != null) {

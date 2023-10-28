@@ -54,7 +54,7 @@ class Command extends SymfonyCommand
         return (int) app()->call([$this, $method]);
     }
 
-    public function getCommand() {
-        return $this;
+    public function getSymfonyCommandInstance() {
+        
     }
 }
