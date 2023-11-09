@@ -5,11 +5,13 @@ namespace Phenomine\Support\Console\Commands\View;
 use Phenomine\Contracts\Command\Command;
 use Phenomine\Support\File;
 
-class ClearViewCache extends Command {
+class ClearViewCache extends Command
+{
     protected $name = 'view:clear';
     protected $description = 'Clear all cached views';
 
-    public function handle() {
+    public function handle()
+    {
         $cachePath = base_path('storage/framework/views');
 
         if (file_exists($cachePath)) {
@@ -26,7 +28,6 @@ class ClearViewCache extends Command {
         $files = File::allFiles($path, true);
         foreach ($files as $file) {
             if (File::isFile($file)) {
-
                 if (File::getName($file) == '.gitignore') {
                     continue;
                 }
