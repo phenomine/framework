@@ -5,7 +5,7 @@ namespace Phenomine\Support\Console\Commands\View;
 use Phenomine\Contracts\Command\Command;
 use Phenomine\Support\File;
 
-class ClearViewCache extends Command {
+class ClearViewCacheCommand extends Command {
     protected $name = 'view:clear';
     protected $description = 'Clear all cached views';
 
