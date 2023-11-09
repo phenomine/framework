@@ -44,4 +44,41 @@ class Application extends ApplicationContract
 
         return $namespace;
     }
+
+    /**
+     * Call a callable
+     *
+     * @param array $callable
+     * @param array $parameters
+     */
+    public function call($callable, $parameters = [])
+    {
+        $class = $callable[0];
+        $method = $callable[1];
+
+        if (is_null($class)) {
+            $class = new $class;
+        }
+
+        $class->{$method}(...$parameters);
+    }
+
+    /**
+     * Call a callable
+     *
+     * @param array $callable
+     * @param array $parameters
+     */
+    public function directCall($callable, $parameters = [])
+    {
+        $class = $callable[0];
+        $method = $callable[1];
+
+        $class->{$method}(...$parameters);
+    }
+
+    public function make($class, $parameters = [])
+    {
+        return new $class(...$parameters);
+    }
 }

@@ -67,4 +67,14 @@ class File
 
         return $file;
     }
+
+    public static function getName($path)
+    {
+        return pathinfo($path, PATHINFO_BASENAME);
+    }
+
+    public static function getExtension($path)
+    {
+        return pathinfo($path, PATHINFO_EXTENSION);
+    }
 }
