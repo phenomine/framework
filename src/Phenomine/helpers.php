@@ -185,3 +185,37 @@ if (!function_exists('request')) {
         }
     }
 }
+
+if (!function_exists('db')) {
+    /**
+     * Get the database instance.
+     *
+     * @return \Phenomine\Support\DB
+     */
+    function db()
+    {
+        return app()->make(\Phenomine\Support\DB::class);
+    }
+}
+
+if (!function_exists('route')) {
+    /**
+     * Get the route instance.
+     *
+     * @return \Phenomine\Support\Route
+     */
+    function route($name, $params = [])
+    {
+        return app()->make(\Phenomine\Support\Route::class)->buildRouteWithParams($name, $params);
+    }
+}
+
+if (!function_exists('redirect')) {
+    /**
+     * Redirect to an url
+     */
+    function redirect($uri)
+    {
+        return header('Location: '.$uri);
+    }
+}

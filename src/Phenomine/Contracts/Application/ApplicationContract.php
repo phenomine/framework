@@ -33,11 +33,11 @@ class ApplicationContract
 
             // determine if console is a symfony console or phenomine console
             if ($console instanceof PhenomineCommand) {
-                $console = $console->getCommand();
+                $console = $console->getSymfonyCommandInstance();
             }
 
             // get instance of symfony command
-            
+
 
             $this->console->add($console);
         }

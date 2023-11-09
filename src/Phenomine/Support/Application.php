@@ -47,7 +47,7 @@ class Application extends ApplicationContract
 
     /**
      * Call a callable
-     * 
+     *
      * @param array $callable
      * @param array $parameters
      */
@@ -56,7 +56,29 @@ class Application extends ApplicationContract
         $class = $callable[0];
         $method = $callable[1];
 
-        $class = new $class();
+        if (is_null($class)) {
+            $class = new $class;
+        }
+
         $class->{$method}(...$parameters);
+    }
+
+    /**
+     * Call a callable
+     *
+     * @param array $callable
+     * @param array $parameters
+     */
+    public function directCall($callable, $parameters = [])
+    {
+        $class = $callable[0];
+        $method = $callable[1];
+
+        $class->{$method}(...$parameters);
+    }
+
+    public function make($class, $parameters = [])
+    {
+        return new $class(...$parameters);
     }
 }

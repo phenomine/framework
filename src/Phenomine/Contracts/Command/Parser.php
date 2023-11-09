@@ -33,20 +33,20 @@ trait Parser {
 
         if (isset($matches[1])) {
             $shortcut = $matches[0];
-            $token = $matches[1];
+            $option = $matches[1];
         }
 
         switch (true) {
-            case str_ends_with($token, '='):
-                return new InputOption(trim($token, '='), $shortcut, InputOption::VALUE_OPTIONAL, $description);
-            case str_ends_with($token, '=*'):
-                return new InputOption(trim($token, '=*'), $shortcut, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, $description);
-            case preg_match('/(.+)\=\*(.+)/', $token, $matches):
+            case str_ends_with($option, '='):
+                return new InputOption(trim($option, '='), $shortcut, InputOption::VALUE_OPTIONAL, $description);
+            case str_ends_with($option, '=*'):
+                return new InputOption(trim($option, '=*'), $shortcut, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, $description);
+            case preg_match('/(.+)\=\*(.+)/', $option, $matches):
                 return new InputOption($matches[1], $shortcut, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, $description, preg_split('/,\s?/', $matches[2]));
-            case preg_match('/(.+)\=(.+)/', $token, $matches):
+            case preg_match('/(.+)\=(.+)/', $option, $matches):
                 return new InputOption($matches[1], $shortcut, InputOption::VALUE_OPTIONAL, $description, $matches[2]);
             default:
-                return new InputOption($token, $shortcut, InputOption::VALUE_NONE, $description);
+                return new InputOption($option, $shortcut, InputOption::VALUE_NONE, $description);
         }
     }
 }

@@ -8,11 +8,13 @@ use Phenomine\Support\Str;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\OutputStyle;
 
-trait InteractsWithIO {
+trait InteractsWithIO
+{
     /**
      * The input interface implementation.
      *
@@ -23,10 +25,29 @@ trait InteractsWithIO {
     /**
      * The output interface implementation.
      *
-     * @var \Symfony\Component\Console\Output\OutputInterface
+     * @var \Phenomine\Contracts\Command\OutputStyle
      */
     protected $output;
 
+    /**
+     * The default verbosity of output commands.
+     *
+     * @var int
+     */
+    protected $verbosity = OutputInterface::VERBOSITY_NORMAL;
+
+    /**
+     * The mapping between human readable verbosity levels and Symfony's OutputInterface.
+     *
+     * @var array
+     */
+    protected $verbosityMap = [
+        'v' => OutputInterface::VERBOSITY_VERBOSE,
+        'vv' => OutputInterface::VERBOSITY_VERY_VERBOSE,
+        'vvv' => OutputInterface::VERBOSITY_DEBUG,
+        'quiet' => OutputInterface::VERBOSITY_QUIET,
+        'normal' => OutputInterface::VERBOSITY_NORMAL,
+    ];
 
     /**
      * Determine if the given argument is present.
@@ -321,7 +342,7 @@ trait InteractsWithIO {
      */
     public function warn($string, $verbosity = null)
     {
-        if (!$this->output->getFormatter()->hasStyle('warning')) {
+        if (! $this->output->getFormatter()->hasStyle('warning')) {
             $style = new OutputFormatterStyle('yellow');
 
             $this->output->getFormatter()->setStyle('warning', $style);
@@ -342,7 +363,7 @@ trait InteractsWithIO {
         $length = Str::length(strip_tags($string)) + 12;
 
         $this->comment(str_repeat('*', $length), $verbosity);
-        $this->comment('*     ' . $string . '     *', $verbosity);
+        $this->comment('*     '.$string.'     *', $verbosity);
         $this->comment(str_repeat('*', $length), $verbosity);
 
         $this->comment('', $verbosity);
@@ -375,7 +396,7 @@ trait InteractsWithIO {
     /**
      * Set the output interface implementation.
      *
-     * @param  \Illuminate\Console\OutputStyle  $output
+     * @param  \Phenomine\Contracts\Command\OutputStyle  $output
      * @return void
      */
     public function setOutput(OutputStyle $output)
@@ -384,9 +405,37 @@ trait InteractsWithIO {
     }
 
     /**
+     * Set the verbosity level.
+     *
+     * @param  string|int  $level
+     * @return void
+     */
+    protected function setVerbosity($level)
+    {
+        $this->verbosity = $this->parseVerbosity($level);
+    }
+
+    /**
+     * Get the verbosity level in terms of Symfony's OutputInterface level.
+     *
+     * @param  string|int|null  $level
+     * @return int
+     */
+    protected function parseVerbosity($level = null)
+    {
+        if (isset($this->verbosityMap[$level])) {
+            $level = $this->verbosityMap[$level];
+        } elseif (! is_int($level)) {
+            $level = $this->verbosity;
+        }
+
+        return $level;
+    }
+
+    /**
      * Get the output implementation.
      *
-     * @return \Illuminate\Console\OutputStyle
+     * @return \Phenomine\Contracts\Command\OutputStyle
      */
     public function getOutput()
     {

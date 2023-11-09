@@ -267,4 +267,36 @@ class Route extends Instance
 
         return $valid;
     }
+
+    public function buildRouteWithParams($route_name, $params) {
+        $route = static::getRouteByName($route_name);
+        if ($route == null) {
+            throw new RouteException("Route {$route_name} does not exist");
+        }
+        $uri = '';
+        if (!empty($params)) {
+            $index = -1;
+            foreach ($route->details as $path) {
+                $index++;
+                if ($path->static) {
+                    $uri .= $path->name;
+                } else {
+                    $param_name = str_replace(['{', '}','?'], '', $path->name);
+                    if (isset($params[$param_name])) {
+                        $uri .= $params[$param_name];
+                    } else {
+                        if (!$path->optional) {
+                            throw new RouteException("Parameter {$param_name} is required");
+                        }
+                    }
+                }
+                if ($index < count($route->details) - 1) {
+                    $uri .= '/';
+                }
+            }
+        } else {
+            $uri = $route->uri;
+        }
+        return $uri;
+    }
 }
