@@ -2,10 +2,9 @@
 
 namespace Phenomine\Contracts\Application;
 
+use Phenomine\Contracts\Command\Command as PhenomineCommand;
 use Phenomine\Support\Console\Console;
 use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Command\Command as SymfonyCommand;
-use Phenomine\Contracts\Command\Command as PhenomineCommand;
 
 class ApplicationContract
 {
@@ -27,7 +26,6 @@ class ApplicationContract
         $this->console = new Application();
         $consoleNamespace = Console::getAllConsoleNamespace();
         foreach ($consoleNamespace as $console) {
-
             // check if namespace is symfony or phenomine
             $console = new $console();
 
@@ -37,7 +35,6 @@ class ApplicationContract
             }
 
             // get instance of symfony command
-
 
             $this->console->add($console);
         }

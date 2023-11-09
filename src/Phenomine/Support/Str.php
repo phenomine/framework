@@ -52,6 +52,7 @@ class Str
         if ($pos !== false) {
             $string = substr_replace($string, $replace, $pos, strlen($search));
         }
+
         return $string;
     }
 
@@ -61,14 +62,15 @@ class Str
             $regex = '/[';
             foreach ($delimiter as $key => $value) {
                 if ($value == '\\') {
-                    $regex .= "\\\\\\\\";
-                } else if ($value == '/') {
+                    $regex .= '\\\\\\\\';
+                } elseif ($value == '/') {
                     $regex .= '\\/';
                 } else {
                     $regex .= $value;
                 }
             }
             $regex .= ']/';
+
             return preg_split($regex, $string);
         } else {
             return explode($delimiter, $string);
@@ -133,6 +135,7 @@ class Str
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
+
         return $randomString;
     }
 
@@ -144,6 +147,7 @@ class Str
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
+
         return $randomString;
     }
 
@@ -155,6 +159,7 @@ class Str
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
+
         return $randomString;
     }
 
@@ -166,6 +171,7 @@ class Str
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
+
         return $randomString;
     }
 
@@ -188,6 +194,4 @@ class Str
     {
         return preg_replace('/'.$needle.'$/', '', $string);
     }
-
-
 }
