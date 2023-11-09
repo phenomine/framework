@@ -95,6 +95,16 @@ class Route extends Instance
             $instance->details[] = $routePath;
         });
 
+        $file = null;
+
+        try {
+            $backfiles = debug_backtrace();
+            $file = $backfiles[1]['file'].':'.$backfiles[0]['line'];
+        } catch (\Exception $e) {
+        }
+
+        $instance->origin = $file;
+
         $_routes[] = $instance;
 
         return $this;

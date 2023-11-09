@@ -26,6 +26,11 @@ class Application extends ApplicationContract
         $this->route = Route::predictRoute();
     }
 
+    public function initConsole()
+    {
+        $this->loadRoutes();
+    }
+
     public static function getNamespace($file)
     {
         $file = file_get_contents($file);

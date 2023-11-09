@@ -45,4 +45,6 @@ class Instance
      * The route name.
      */
     public $name;
+
+    public $origin;
 }
