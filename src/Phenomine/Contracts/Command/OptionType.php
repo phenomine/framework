@@ -2,7 +2,6 @@
 
 namespace Phenomine\Contracts\Command;
 
-
 class OptionType
 {
     /**

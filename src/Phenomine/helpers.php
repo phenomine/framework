@@ -212,7 +212,7 @@ if (!function_exists('route')) {
 
 if (!function_exists('redirect')) {
     /**
-     * Redirect to an url
+     * Redirect to an url.
      */
     function redirect($uri)
     {
