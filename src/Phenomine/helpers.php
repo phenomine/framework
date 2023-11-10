@@ -190,11 +190,36 @@ if (!function_exists('db')) {
     /**
      * Get the database instance.
      *
-     * @return \Phenomine\Support\DB
+     * @return \Phenomine\Support\Database\DB
      */
     function db()
     {
-        return app()->make(\Phenomine\Support\DB::class);
+        global $_db;
+
+        if ($_db) {
+            return $_db;
+        }
+
+        $params = [
+            'type'      => config('database.driver', 'mysql'),
+            'database'  => config('database.database', ''),
+            'username'  => config('database.username', 'root'),
+            'password'  => config('database.password'),
+            'charset'   => config('database.options.charset', 'utf8mb4'),
+            'collation' => config('database.options.collation', 'utf8mb4_unicode_ci'),
+            'prefix'    => config('database.options.table_prefix', ''),
+        ];
+
+        if (config('database.socket', '') == '') {
+            $params['host'] = config('database.host', 'localhost');
+            $params['port'] = config('database.port', '3306');
+        } else {
+            $params['socket'] = config('database.socket', '');
+        }
+
+        $_db = new \Phenomine\Support\Database\DB($params);
+
+        return $_db;
     }
 }
 

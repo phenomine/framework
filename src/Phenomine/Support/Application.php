@@ -50,6 +50,23 @@ class Application extends ApplicationContract
         return $namespace;
     }
 
+    public static function getClassName($file)
+    {
+        $file = file_get_contents($file);
+        $classPattern = '/class (.*) /';
+        preg_match($classPattern, $file, $matches);
+        $class = null;
+
+        $classPattern = trim($matches[1], '/');
+        $classPattern = explode(' ', $classPattern);
+        $classPattern = trim($classPattern[0]);
+        if (!empty($matches)) {
+            $class = $classPattern;
+        }
+
+        return $class;
+    }
+
     /**
      * Call a callable.
      *
