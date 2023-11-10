@@ -28,7 +28,11 @@ class Blueprint
     {
         $this->name = $name;
         $this->type = $type;
-        $length ? $this->length = $length : null;
+        if (is_array($length)) {
+            $this->length = implode(',', $length);
+        } else {
+            $length ? $this->length = $length : null;
+        }
 
         return $this;
     }

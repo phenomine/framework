@@ -53,6 +53,56 @@ class Migration
         return $this->addColumn($name, ColumnType::INT, $length);
     }
 
+    public function char($name, $length = 1)
+    {
+        return $this->addColumn($name, ColumnType::CHAR, $length);
+    }
+
+    public function bigint($name, $length = 20)
+    {
+        return $this->addColumn($name, ColumnType::BIGINT, $length);
+    }
+
+    public function date($name)
+    {
+        return $this->addColumn($name, ColumnType::DATE);
+    }
+
+    public function datetime($name)
+    {
+        return $this->addColumn($name, ColumnType::DATETIME);
+    }
+
+    public function time($name)
+    {
+        return $this->addColumn($name, ColumnType::TIME);
+    }
+
+    public function timestamp($name)
+    {
+        return $this->addColumn($name, ColumnType::TIMESTAMP);
+    }
+
+    public function boolean($name)
+    {
+        return $this->addColumn($name, ColumnType::BOOLEAN);
+    }
+
+    public function decimal($name, $length = [10, 2])
+    {
+        return $this->addColumn($name, ColumnType::DECIMAL, $length);
+    }
+
+    public function double($name, $length = [10, 2])
+    {
+        return $this->addColumn($name, ColumnType::DOUBLE, $length);
+    }
+
+    public function float($name, $length = [10, 2])
+    {
+        return $this->addColumn($name, ColumnType::FLOAT, $length);
+    }
+
     public function text($name)
     {
         return $this->addColumn($name, ColumnType::TEXT);

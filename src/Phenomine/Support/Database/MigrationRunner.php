@@ -103,6 +103,46 @@ class MigrationRunner
 
     public function rollback()
     {
+        $batch = $this->getCurrentBatchNumber();
+
+        $migrations = db()->select(config('database.migration_table', 'db_migrations'), ['migration'], [
+            'batch' => $batch,
+        ]);
+
+        $counter = 0;
+        $migrationRolledBack = [];
+
+        foreach ($migrations as $migration) {
+            $migrationFile = $this->getMigrationFile($migration['migration']);
+            require_once $migrationFile['file'];
+
+            $runner = new $migrationFile['class']();
+            $runner->down();
+            db()->delete(config('database.migration_table', 'db_migrations'), [
+                'migration' => $migration['migration'],
+            ]);
+            $counter++;
+            $migrationRolledBack[] = $migration['migration'];
+        }
+
+        return [
+            'success'    => true,
+            'status'     => 'success',
+            'message'    => 'Rollback success',
+            'rollback'   => $counter,
+            'migrations' => $migrationRolledBack,
+        ];
+    }
+
+    public function getMigrationFile($file)
+    {
+        $migrations = $this->getMigrationFiles();
+
+        foreach ($migrations as $migration) {
+            if (File::getName($migration['file']) == $file) {
+                return $migration;
+            }
+        }
     }
 
     public static function getMigrationFiles()
