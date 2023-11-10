@@ -2,8 +2,8 @@
 
 namespace Phenomine\Contracts\Migration;
 
-class ColumnType {
-
+class ColumnType
+{
     // String Types
     public const TEXT = 'TEXT';
     public const STRING = 'VARCHAR';

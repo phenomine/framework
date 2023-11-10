@@ -2,17 +2,20 @@
 
 namespace Phenomine\Support\Console\Commands\Migration;
 
-use Phenomine\Support\Database\MigrationRunner;
 use Phenomine\Contracts\Command\Command;
+use Phenomine\Support\Database\MigrationRunner;
 use Phenomine\Support\File;
 
-class RunMigrationCommand extends Command {
+class RunMigrationCommand extends Command
+{
     protected $name = 'migrate';
     protected $description = 'Run database migration';
 
     protected $runner;
     protected $currentBatch = 1;
-    public function handle() {
+
+    public function handle()
+    {
         $this->runner = new MigrationRunner();
 
         // get highest batch number
@@ -22,6 +25,7 @@ class RunMigrationCommand extends Command {
 
         if (count($migrations) == 0) {
             $this->info('Nothing to migrate');
+
             return true;
         }
 
@@ -35,17 +39,18 @@ class RunMigrationCommand extends Command {
                 }
             }
             $counter++;
-            $this->warn('Migrating :     ' . $migration['class']);
+            $this->warn('Migrating :     '.$migration['class']);
             $result = $this->runner->run($migration, $this->currentBatch + 1);
             if ($result['status'] == 'skipped') {
-                $this->line('Skipped :       ' . $migration['class'] . ' (' . $result['message'] . ')');
-            } else if ($result['status'] == 'success') {
-                $this->info('Migrated :      ' . $migration['class']);
+                $this->line('Skipped :       '.$migration['class'].' ('.$result['message'].')');
+            } elseif ($result['status'] == 'success') {
+                $this->info('Migrated :      '.$migration['class']);
             }
         }
 
         if ($counter == 0) {
             $this->info('Nothing to migrate');
+
             return true;
         }
 
