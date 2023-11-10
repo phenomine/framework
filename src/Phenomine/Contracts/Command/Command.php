@@ -3,14 +3,15 @@
 namespace Phenomine\Contracts\Command;
 
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Command extends SymfonyCommand
 {
-    use Parser;
-    use InteractsWithIO;
+    use Parser, InteractsWithIO;
 
     protected $name;
     protected $description;
@@ -29,8 +30,7 @@ class Command extends SymfonyCommand
         $this->parseOptionArgs();
     }
 
-    protected function parseOptionArgs()
-    {
+    protected function parseOptionArgs() {
         $inputDefinitions = [];
         foreach ($this->arguments as $argument => $description) {
             $inputDefinitions[] = static::parseArgument($argument, $description);
@@ -45,17 +45,14 @@ class Command extends SymfonyCommand
     {
         $this->input = $input;
         $this->output = $output instanceof OutputStyle ? $output : app()->make(
-            OutputStyle::class,
-            ['input' => $input, 'output' => $output]
+            OutputStyle::class, ['input' => $input, 'output' => $output]
         );
 
         $method = method_exists($this, 'handle') ? 'handle' : '__invoke';
-
         return (int) app()->call([$this, $method]);
     }
 
-    public function getSymfonyCommandInstance()
-    {
+    public function getSymfonyCommandInstance() {
         return $this;
     }
 //

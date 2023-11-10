@@ -26,8 +26,7 @@ class Application extends ApplicationContract
         $this->route = Route::predictRoute();
     }
 
-    public function initConsole()
-    {
+    public function initConsole() {
         $this->loadRoutes();
     }
 
@@ -50,8 +49,25 @@ class Application extends ApplicationContract
         return $namespace;
     }
 
+    public static function getClassName($file)
+    {
+        $file = file_get_contents($file);
+        $classPattern = '/class (.*) /';
+        preg_match($classPattern, $file, $matches);
+        $class = null;
+
+        $classPattern = trim($matches[1], '/');
+        $classPattern = explode(' ', $classPattern);
+        $classPattern = trim($classPattern[0]);
+        if (!empty($matches)) {
+            $class = $classPattern;
+        }
+
+        return $class;
+    }
+
     /**
-     * Call a callable.
+     * Call a callable
      *
      * @param array $callable
      * @param array $parameters
@@ -62,14 +78,14 @@ class Application extends ApplicationContract
         $method = $callable[1];
 
         if (is_null($class)) {
-            $class = new $class();
+            $class = new $class;
         }
 
         $class->{$method}(...$parameters);
     }
 
     /**
-     * Call a callable.
+     * Call a callable
      *
      * @param array $callable
      * @param array $parameters

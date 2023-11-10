@@ -1,0 +1,17 @@
+<?php
+
+use Phenomine\Support\Database\Migration;
+
+class {{migration}} extends Migration {
+    protected $table = '{{table}}';
+
+    public function up() {
+        // $this->id();
+        // $this->string('name');
+        // $this->string('email')->unique();
+    }
+
+    public function down() {
+        $this->dropTableIfExists();
+    }
+}

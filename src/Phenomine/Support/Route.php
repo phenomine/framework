@@ -96,12 +96,10 @@ class Route extends Instance
         });
 
         $file = null;
-
         try {
             $backfiles = debug_backtrace();
-            $file = $backfiles[1]['file'].':'.$backfiles[0]['line'];
-        } catch (\Exception $e) {
-        }
+            $file = $backfiles[1]['file'] . ':' . $backfiles[0]['line'];
+        } catch (\Exception $e) {}
 
         $instance->origin = $file;
 
@@ -278,8 +276,7 @@ class Route extends Instance
         return $valid;
     }
 
-    public function buildRouteWithParams($route_name, $params)
-    {
+    public function buildRouteWithParams($route_name, $params) {
         $route = static::getRouteByName($route_name);
         if ($route == null) {
             throw new RouteException("Route {$route_name} does not exist");
@@ -292,7 +289,7 @@ class Route extends Instance
                 if ($path->static) {
                     $uri .= $path->name;
                 } else {
-                    $param_name = str_replace(['{', '}', '?'], '', $path->name);
+                    $param_name = str_replace(['{', '}','?'], '', $path->name);
                     if (isset($params[$param_name])) {
                         $uri .= $params[$param_name];
                     } else {
@@ -308,7 +305,6 @@ class Route extends Instance
         } else {
             $uri = $route->uri;
         }
-
         return $uri;
     }
 }

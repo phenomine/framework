@@ -67,7 +67,6 @@ class File
 
         return $file;
     }
-
     public static function createFileFromString($origin, $string, $extension = '.php')
     {
         // check if last $string is .php
@@ -98,10 +97,9 @@ class File
         $file = $file_dir.'/'.$filename.$extension;
         if (!static::exists($file)) {
             touch($file);
-
             return [
-                'file'      => $file,
-                'directory' => $directory,
+                'file' => $file,
+                'directory' => $directory
             ];
         } else {
             return false;
@@ -129,7 +127,6 @@ class File
         foreach ($params as $key => $value) {
             $content = str_replace('{{'.$key.'}}', $value, $content);
         }
-
         return $content;
     }
 
