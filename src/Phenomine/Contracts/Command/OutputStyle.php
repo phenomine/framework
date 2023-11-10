@@ -2,7 +2,6 @@
 
 namespace Phenomine\Contracts\Command;
 
-use Phenomine\Contracts\Command\NewLineAware;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
@@ -38,8 +37,9 @@ class OutputStyle extends SymfonyStyle implements NewLineAware
     /**
      * Create a new Console OutputStyle instance.
      *
-     * @param  \Symfony\Component\Console\Input\InputInterface  $input
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @param \Symfony\Component\Console\Input\InputInterface   $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     *
      * @return void
      */
     public function __construct(InputInterface $input, OutputInterface $output)
