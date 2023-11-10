@@ -2,6 +2,7 @@
 
 namespace Phenomine\Contracts\Command;
 
+
 class ArgumentType
 {
     /**

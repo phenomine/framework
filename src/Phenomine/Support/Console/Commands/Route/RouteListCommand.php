@@ -5,17 +5,15 @@ namespace Phenomine\Support\Console\Commands\Route;
 use Phenomine\Contracts\Command\Command;
 use Phenomine\Support\Route;
 
-class RouteListCommand extends Command
-{
+class RouteListCommand extends Command {
     protected $name = 'route:list';
     protected $description = 'List all registered routes';
     protected $options = [
         'm|method=?' => 'Filter the routes by method',
-        'f|full=?'   => 'Show full origin',
+        'f|full=?' => 'Show full origin'
     ];
 
-    public function handle()
-    {
+    public function handle() {
         $routes = Route::getRoutes();
         $data = [];
         foreach ($routes as $route) {
@@ -44,7 +42,7 @@ class RouteListCommand extends Command
             if ($this->option('full') != '?') {
                 $origin = $route->origin;
             } else {
-                $origin = $route->origin ? '...'.substr($route->origin, -30) : 'Unknown';
+                $origin = $route->origin ? '...' . substr($route->origin, -30) : 'Unknown';
             }
 
             $data[] = [
@@ -52,11 +50,10 @@ class RouteListCommand extends Command
                 $route->uri,
                 $route->name,
                 $action,
-                $origin,
+                $origin
             ];
         }
         $this->table(['Method', 'URI', 'Name', 'Action', 'Route File'], $data);
-
         return true;
     }
 }

@@ -201,13 +201,13 @@ if (!function_exists('db')) {
         }
 
         $params = [
-            'type'      => config('database.driver', 'mysql'),
-            'database'  => config('database.database', ''),
-            'username'  => config('database.username', 'root'),
-            'password'  => config('database.password'),
-            'charset'   => config('database.options.charset', 'utf8mb4'),
+            'type' => config('database.driver', 'mysql'),
+            'database' => config('database.database', ''),
+            'username' => config('database.username', 'root'),
+            'password' => config('database.password'),
+            'charset' => config('database.options.charset', 'utf8mb4'),
             'collation' => config('database.options.collation', 'utf8mb4_unicode_ci'),
-            'prefix'    => config('database.options.table_prefix', ''),
+            'prefix' => config('database.options.table_prefix', ''),
         ];
 
         if (config('database.socket', '') == '') {
@@ -220,6 +220,7 @@ if (!function_exists('db')) {
         $_db = new \Phenomine\Support\Database\DB($params);
 
         return $_db;
+
     }
 }
 
@@ -237,7 +238,7 @@ if (!function_exists('route')) {
 
 if (!function_exists('redirect')) {
     /**
-     * Redirect to an url.
+     * Redirect to an url
      */
     function redirect($uri)
     {

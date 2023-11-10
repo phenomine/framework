@@ -5,10 +5,9 @@ namespace Phenomine\Contracts\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-trait Parser
-{
-    protected static function parseArgument($argument, $description)
-    {
+trait Parser {
+
+    protected static function parseArgument($argument, $description) {
         switch (true) {
             case str_ends_with($argument, '?*'):
                 return new InputArgument(trim($argument, '?*'), InputArgument::IS_ARRAY, $description);
@@ -27,6 +26,7 @@ trait Parser
 
     protected static function parseOption($option, $description)
     {
+
         $matches = preg_split('/\s*\|\s*/', $option, 2);
 
         $shortcut = null;
