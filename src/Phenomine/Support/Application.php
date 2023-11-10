@@ -26,7 +26,8 @@ class Application extends ApplicationContract
         $this->route = Route::predictRoute();
     }
 
-    public function initConsole() {
+    public function initConsole()
+    {
         $this->loadRoutes();
     }
 
@@ -67,7 +68,7 @@ class Application extends ApplicationContract
     }
 
     /**
-     * Call a callable
+     * Call a callable.
      *
      * @param array $callable
      * @param array $parameters
@@ -78,14 +79,14 @@ class Application extends ApplicationContract
         $method = $callable[1];
 
         if (is_null($class)) {
-            $class = new $class;
+            $class = new $class();
         }
 
         $class->{$method}(...$parameters);
     }
 
     /**
-     * Call a callable
+     * Call a callable.
      *
      * @param array $callable
      * @param array $parameters

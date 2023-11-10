@@ -2,8 +2,8 @@
 
 namespace Phenomine\Contracts\Migration;
 
-class Blueprint {
-
+class Blueprint
+{
     public $name;
 
     public $type;
@@ -24,7 +24,8 @@ class Blueprint {
 
     public $comment = null;
 
-    public function __construct($name, $type, $length = null) {
+    public function __construct($name, $type, $length = null)
+    {
         $this->name = $name;
         $this->type = $type;
         $length ? $this->length = $length : null;
@@ -32,54 +33,62 @@ class Blueprint {
         return $this;
     }
 
-    public function nullable() {
+    public function nullable()
+    {
         $this->nullable = true;
 
         return $this;
     }
 
-    public function default($value) {
+    public function default($value)
+    {
         $this->default = $value;
 
         return $this;
     }
 
-    public function autoIncrement() {
+    public function autoIncrement()
+    {
         $this->autoIncrement = true;
 
         return $this;
     }
 
-    public function unsigned() {
+    public function unsigned()
+    {
         $this->unsigned = true;
 
         return $this;
     }
 
-    public function unique() {
+    public function unique()
+    {
         $this->unique = true;
 
         return $this;
     }
 
-    public function primary() {
+    public function primary()
+    {
         $this->primary = true;
 
         return $this;
     }
 
-    public function comment($value) {
+    public function comment($value)
+    {
         $this->comment = $value;
 
         return $this;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->name;
     }
 
-    public function getColumnQuery() {
-
+    public function getColumnQuery()
+    {
         $query = [];
 
         $type = $this->type;
@@ -92,7 +101,7 @@ class Blueprint {
         if ($this->unsigned) {
             $query[] = 'UNSIGNED';
         }
-        
+
         $query[] = $this->nullable ? 'NULL' : 'NOT NULL';
 
         if ($this->default) {
@@ -117,5 +126,4 @@ class Blueprint {
 
         return $query;
     }
-
 }

@@ -6,12 +6,13 @@ use Phenomine\Support\Application;
 use Phenomine\Support\File;
 use Phenomine\Support\Str;
 
-class MigrationRunner {
-
+class MigrationRunner
+{
     private $migrations;
 
-    public function __construct() {
-        $this->getMigrationFiles();;
+    public function __construct()
+    {
+        $this->getMigrationFiles();
 
         if (!db()->tableExist(config('database.migration_table', 'db_migrations'))) {
             $this->createMigrationTable();
@@ -20,26 +21,28 @@ class MigrationRunner {
         $this->migrations = db()->select(config('database.migration_table', 'db_migrations'), ['migration', 'batch']);
     }
 
-    public function createMigrationTable() {
+    public function createMigrationTable()
+    {
         $create = db()->create(config('database.migration_table', 'db_migrations'), [
-            "id" => [
-                "INT",
-                "NOT NULL",
-                "AUTO_INCREMENT",
-                "PRIMARY KEY"
+            'id' => [
+                'INT',
+                'NOT NULL',
+                'AUTO_INCREMENT',
+                'PRIMARY KEY',
             ],
-            "migration" => [
-                "VARCHAR(200)",
-                "NOT NULL"
+            'migration' => [
+                'VARCHAR(200)',
+                'NOT NULL',
             ],
-            "batch" => [
-                "INT",
-                "NOT NULL"
-            ]
+            'batch' => [
+                'INT',
+                'NOT NULL',
+            ],
         ]);
     }
 
-    public function getCurrentBatchNumber() {
+    public function getCurrentBatchNumber()
+    {
         $batch = 0;
         foreach ($this->migrations as $migration) {
             if ($migration['batch'] > $batch) {
@@ -50,25 +53,27 @@ class MigrationRunner {
         return $batch;
     }
 
-    public function addMigration($migration, $batch) {
+    public function addMigration($migration, $batch)
+    {
         db()->insert(config('database.migration_table', 'db_migrations'), [
             'migration' => File::getName($migration),
-            'batch' => $batch
+            'batch'     => $batch,
         ]);
     }
 
-    public function run($migration, $batch) {
+    public function run($migration, $batch)
+    {
         require_once $migration['file'];
 
         $exist = db()->select(config('database.migration_table', 'db_migrations'), ['migration'], [
-            'migration' => File::getName($migration['file'])
+            'migration' => File::getName($migration['file']),
         ]);
 
         if (count($exist) > 0) {
             return [
                 'success' => false,
-                'status' => 'skipped',
-                'message' => 'Migration has already been run'
+                'status'  => 'skipped',
+                'message' => 'Migration has already been run',
             ];
         }
 
@@ -78,8 +83,8 @@ class MigrationRunner {
         if (db()->tableExist($runner->getTable())) {
             return [
                 'success' => false,
-                'status' => 'skipped',
-                'message' => "Table {$runner->getTable()} already exists"
+                'status'  => 'skipped',
+                'message' => "Table {$runner->getTable()} already exists",
             ];
         }
 
@@ -91,16 +96,14 @@ class MigrationRunner {
 
         return [
             'success' => true,
-            'status' => 'success',
-            'message' => "Table {$runner->getTable()} created"
+            'status'  => 'success',
+            'message' => "Table {$runner->getTable()} created",
         ];
     }
 
-
-    public function rollback() {
-
+    public function rollback()
+    {
     }
-
 
     public static function getMigrationFiles()
     {
@@ -115,8 +118,8 @@ class MigrationRunner {
 
             if ($className != null) {
                 $migrationFiles[] = [
-                    'file' => $file,
-                    'class' => $className
+                    'file'  => $file,
+                    'class' => $className,
                 ];
             }
         }
