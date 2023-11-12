@@ -9,13 +9,10 @@
 
 namespace Phenomine\Contracts\View;
 
-use Latte\Strict;
 use Phenomine\Support\File;
 
 class Loader implements \Latte\Loader
 {
-    use Strict;
-
     protected ?string $baseDir = null;
 
     public function __construct(?string $baseDir = null)
