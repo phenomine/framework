@@ -4,6 +4,7 @@ namespace Phenomine\Support;
 
 use Phenomine\Contracts\View\ViewContract;
 use Phenomine\Support\Exceptions\ViewException;
+use Throwable;
 
 class View extends ViewContract
 {
@@ -15,8 +16,11 @@ class View extends ViewContract
             throw new ViewException('View not found');
         }
 
-        // render to output
-        $this->latte->render($view, $data);
+        try {
+            $this->latte->render($view, $data);
+        } catch (Throwable $e) {
+            throw new ViewException($e->getMessage());
+        }
     }
 
     public static function exist($view)
