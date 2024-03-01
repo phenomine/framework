@@ -19,7 +19,6 @@ class Command extends SymfonyCommand
 
     public function __construct()
     {
-
         // call warn production mode if function exists
         if (method_exists($this, 'warnProductionMode')) {
             $this->warnProductionMode();

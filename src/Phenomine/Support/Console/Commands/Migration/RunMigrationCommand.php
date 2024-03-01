@@ -22,6 +22,7 @@ class RunMigrationCommand extends Command
             $result = $this->confirm('Do you want to continue?');
             if (!$result) {
                 $this->warn('Operation cancelled.');
+
                 return;
             }
         }
@@ -34,20 +35,22 @@ class RunMigrationCommand extends Command
                 // only support for mysql, mariadb, and postgresql
                 $db = config('database.driver');
                 if ($db != 'mysql' && $db != 'mariadb' && $db != 'pgsql') {
-                    $this->error('Database "' . config('database.database') . '" is not exist. Please create it manually.');
+                    $this->error('Database "'.config('database.database').'" is not exist. Please create it manually.');
+
                     return;
                 } else {
                     // ask for create database
-                    $create = $this->confirm('Database "' . config('database.database') . '" is not exist. Would you like to create it?');
+                    $create = $this->confirm('Database "'.config('database.database').'" is not exist. Would you like to create it?');
                     if (!$create) {
                         $this->warn('Migration cancelled.');
+
                         return;
                     }
 
                     // create database
-                    $query = 'CREATE DATABASE ' . config('database.database');
+                    $query = 'CREATE DATABASE '.config('database.database');
                     if ($db == 'mysql' || $db == 'mariadb') {
-                        $query .= ' CHARACTER SET ' . config('database.charset', 'utf8mb4') . ' COLLATE ' . config('database.collation', 'utf8mb4_unicode_ci');
+                        $query .= ' CHARACTER SET '.config('database.charset', 'utf8mb4').' COLLATE '.config('database.collation', 'utf8mb4_unicode_ci');
                     }
 
                     // manually run query
@@ -61,7 +64,7 @@ class RunMigrationCommand extends Command
                     $pdo->exec($query);
                     $pdo = null;
 
-                    $this->info('Database "' . config('database.database') . '" created.');
+                    $this->info('Database "'.config('database.database').'" created.');
                 }
             }
         }
