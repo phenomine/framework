@@ -22,6 +22,7 @@ class MakeControllerCommand extends Command
             $result = $this->confirm('Do you want to continue?');
             if (!$result) {
                 $this->warn('Operation cancelled.');
+
                 return;
             }
         }

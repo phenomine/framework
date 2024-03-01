@@ -3,7 +3,6 @@
 namespace Phenomine\Support\Console\Commands\Seeder;
 
 use Phenomine\Contracts\Command\Command;
-use Phenomine\Support\File;
 use Phenomine\Support\Database\SeederRunner;
 
 class RunSeederCommand extends Command
@@ -21,16 +20,17 @@ class RunSeederCommand extends Command
             $result = $this->confirm('Do you want to continue?');
             if (!$result) {
                 $this->warn('Operation cancelled.');
+
                 return;
             }
         }
-
 
         $this->runner = new SeederRunner();
 
         $seeders = $this->runner->getSeederFiles();
         if (count($seeders) == 0) {
             $this->info('Nothing to seed');
+
             return true;
         }
         $counter = 0;

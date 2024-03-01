@@ -22,6 +22,7 @@ class MakeSeederCommand extends Command
             $result = $this->confirm('Do you want to continue?');
             if (!$result) {
                 $this->warn('Operation cancelled.');
+
                 return;
             }
         }
@@ -30,7 +31,7 @@ class MakeSeederCommand extends Command
         $file = File::createFileFromString(base_path('db/seeders'), $name, '.php');
 
         $stub = File::readAndReplace(__DIR__.'../../../../../Stubs/seeder.stub', [
-            'class' => $name
+            'class' => $name,
         ]);
 
         File::write($file['file'], $stub);

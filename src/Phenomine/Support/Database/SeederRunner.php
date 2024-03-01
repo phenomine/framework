@@ -16,6 +16,7 @@ class SeederRunner
 
         $runner = new $seeder['class']();
         $runner->run();
+
         return [
             'success' => true,
             'status'  => 'success',
