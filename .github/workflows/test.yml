@@ -64,9 +64,3 @@ jobs:
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USERNAME: root
-
-      - name: Running seeder
-        run: php phenomine db:seed
-        env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
-          DB_USERNAME: root
