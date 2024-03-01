@@ -44,10 +44,7 @@ jobs:
           REDIS_LIBS: liblz4-dev, liblzf-dev, libzstd-dev
 
       - name: Install Phenomine
-        run: composer create-project phenomine/phenomine phenomine
-
-      - name: Change directory
-        run: cd ./phenomine
+        run: composer create-project phenomine/phenomine .
 
       - name: Copy environment file
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
