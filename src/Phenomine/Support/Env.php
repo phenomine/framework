@@ -9,14 +9,15 @@
 
 namespace Phenomine\Support;
 
-class Env {
-
+class Env
+{
     public function __construct()
     {
         $this->load();
     }
 
-    public function load() {
+    public function load()
+    {
         global $_ENV;
         $env = file_get_contents(base_path('.env'));
         $env = explode("\n", $env);
@@ -43,6 +44,7 @@ class Env {
     public static function get($key, $default = null)
     {
         global $_ENV;
+
         return $_ENV[$key] ?? $default;
     }
 
@@ -55,6 +57,7 @@ class Env {
     public static function has($key)
     {
         global $_ENV;
+
         return isset($_ENV[$key]);
     }
 }

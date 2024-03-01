@@ -3,15 +3,19 @@
 namespace Phenomine\Support;
 
 #[\AllowDynamicProperties]
-class Collection {
+class Collection
+{
     protected $items;
 
-    public function __construct($items = []) {
+    public function __construct($items = [])
+    {
         $this->items = $items;
+
         return $this;
     }
 
-    public function __get($name) {
+    public function __get($name)
+    {
         // remove scalar type
         if (is_array($this->items)) {
             return (object) $this->items;
@@ -20,7 +24,8 @@ class Collection {
         }
     }
 
-    public function __set($name, $value) {
+    public function __set($name, $value)
+    {
         if (!$this->items) {
             $this->items = [];
         }
@@ -28,11 +33,13 @@ class Collection {
         $this->items[$name] = $value;
     }
 
-    public function count() {
+    public function count()
+    {
         return count($this->items);
     }
 
-    public function first() {
+    public function first()
+    {
         if (empty($this->items)) {
             return null;
         }
@@ -44,10 +51,12 @@ class Collection {
                 return $first;
             }
         }
+
         return null;
     }
 
-    public function last() {
+    public function last()
+    {
         if (empty($this->items)) {
             return null;
         }
@@ -59,56 +68,69 @@ class Collection {
                 return $last;
             }
         }
+
         return null;
     }
 
-    public function pop() {
+    public function pop()
+    {
         return array_pop($this->items);
     }
 
-    public function shift() {
+    public function shift()
+    {
         return array_shift($this->items);
     }
 
-    public function unshift($item) {
+    public function unshift($item)
+    {
         array_unshift($this->items, $item);
     }
 
-    public function has($key) {
+    public function has($key)
+    {
         return isset($this->items[$key]);
     }
 
-    public function remove($key) {
+    public function remove($key)
+    {
         unset($this->items[$key]);
     }
 
-    public function keys() {
+    public function keys()
+    {
         return array_keys($this->items);
     }
 
-    public function values() {
+    public function values()
+    {
         return array_values($this->items);
     }
 
-    public function map($callback) {
+    public function map($callback)
+    {
         return new static(array_map($callback, $this->items));
     }
 
-    public function filter($callback) {
+    public function filter($callback)
+    {
         return new static(array_filter($this->items, $callback));
     }
 
-    public function each($callback) {
+    public function each($callback)
+    {
         foreach ($this->items as $key => $item) {
             $callback($item, $key);
         }
     }
 
-    public function merge($items) {
+    public function merge($items)
+    {
         return new static(array_merge($this->items, $items));
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return $this->items;
     }
 }

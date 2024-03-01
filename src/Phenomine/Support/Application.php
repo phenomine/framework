@@ -2,7 +2,6 @@
 
 namespace Phenomine\Support;
 
-use Exception;
 use Phenomine\Contracts\Application\ApplicationContract;
 use Phenomine\Support\Exceptions\ExceptionHandler;
 
@@ -15,7 +14,6 @@ class Application extends ApplicationContract
             $_app = $this;
             $this->console->run();
         } else {
-
             ob_start(); // start output buffering
 
             global $_app;
@@ -25,7 +23,8 @@ class Application extends ApplicationContract
         }
     }
 
-    public function prepare() {
+    public function prepare()
+    {
         $handler = new ExceptionHandler();
 
         set_error_handler([$handler, 'errorHandler']);
@@ -36,12 +35,12 @@ class Application extends ApplicationContract
     {
         $this->prepare();
         new Env(); // load .env file
-        $env = env('APP_ENV', "");
-        if ($env == "") {
+        $env = env('APP_ENV', '');
+        if ($env == '') {
             throw new \Exception('Application environment not set correctly. Please check your configuration before running application.');
         }
 
-        if ($env == "production") {
+        if ($env == 'production') {
             error_reporting(0);
             ini_set('display_errors', 0);
             ini_set('log_errors', 1);

@@ -17,7 +17,6 @@ class MakeMigrationCommand extends Command
         'm' => 'Make a model for the table',
     ];
 
-
     public function handle()
     {
         if (config('app.env') == 'production') {
@@ -26,6 +25,7 @@ class MakeMigrationCommand extends Command
             $result = $this->confirm('Do you want to continue?');
             if (!$result) {
                 $this->warn('Operation cancelled.');
+
                 return;
             }
         }
@@ -50,11 +50,10 @@ class MakeMigrationCommand extends Command
             }
             $fileModel = File::createFileFromString(base_path('app/Models'), $tableName, '.php');
             $stubModel = File::readAndReplace(__DIR__.'../../../../../Stubs/model.stub', [
-                'class' => $tableName
+                'class' => $tableName,
             ]);
             File::write($fileModel['file'], $stubModel);
         }
-
 
         $this->info('Migration created successfully');
 

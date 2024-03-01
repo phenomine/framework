@@ -4,14 +4,15 @@ namespace Phenomine\Support\Exceptions;
 
 use Phenomine\Support\View;
 
-class ExceptionHandler {
-
-    function errorHandler(int $errNo, string $errMsg, string $file, int $line) {
+class ExceptionHandler
+{
+    public function errorHandler(int $errNo, string $errMsg, string $file, int $line)
+    {
         echo "$errMsg in $file on line $line";
     }
 
-    public function exceptionHandler($exception) {
-
+    public function exceptionHandler($exception)
+    {
         if (env('APP_ENV') == 'production') {
             abort(500);
             exit;
@@ -24,12 +25,12 @@ class ExceptionHandler {
         // remove the root path from the file path
         $file = str_replace($root, '', $file);
         $data = [
-            'type' => get_class($exception),
-            'message' => $exception->getMessage(),
-            'file' => $file,
-            'line' => $exception->getLine(),
-            'trace' => $exception->getTrace(),
-            'traceAsString' => $exception->getTraceAsString()
+            'type'          => get_class($exception),
+            'message'       => $exception->getMessage(),
+            'file'          => $file,
+            'line'          => $exception->getLine(),
+            'trace'         => $exception->getTrace(),
+            'traceAsString' => $exception->getTraceAsString(),
         ];
         ob_end_clean();
         $view = new View(__DIR__.'/../../views');

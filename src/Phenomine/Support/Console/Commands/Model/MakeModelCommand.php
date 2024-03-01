@@ -17,7 +17,6 @@ class MakeModelCommand extends Command
         'm' => 'Make a migration for the table',
     ];
 
-
     public function handle()
     {
         if (config('app.env') == 'production') {
@@ -26,6 +25,7 @@ class MakeModelCommand extends Command
             $result = $this->confirm('Do you want to continue?');
             if (!$result) {
                 $this->warn('Operation cancelled.');
+
                 return;
             }
         }
@@ -38,23 +38,22 @@ class MakeModelCommand extends Command
         }
         $fileModel = File::createFileFromString(base_path('app/Models'), $tableName, '.php');
         $stubModel = File::readAndReplace(__DIR__.'../../../../../Stubs/model.stub', [
-            'class' => $tableName
+            'class' => $tableName,
         ]);
         File::write($fileModel['file'], $stubModel);
 
         // check if option migration is set
         if ($this->option('m')) {
             $name = 'migration_'.date('YmdHis').'_'.$this->argument('table');
-        $file = File::createFileFromString(base_path('db/migrations'), $name, '.php');
+            $file = File::createFileFromString(base_path('db/migrations'), $name, '.php');
 
-        $stub = File::readAndReplace(__DIR__.'../../../../../Stubs/migration.stub', [
-            'migration' => $name,
-            'table'     => $this->argument('table'),
-        ]);
+            $stub = File::readAndReplace(__DIR__.'../../../../../Stubs/migration.stub', [
+                'migration' => $name,
+                'table'     => $this->argument('table'),
+            ]);
 
-        File::write($file['file'], $stub);
+            File::write($file['file'], $stub);
         }
-
 
         $this->info('Model created successfully');
 
