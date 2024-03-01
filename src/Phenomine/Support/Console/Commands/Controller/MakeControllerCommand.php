@@ -16,6 +16,17 @@ class MakeControllerCommand extends Command
 
     public function handle()
     {
+        if (config('app.env') == 'production') {
+            $this->newLine();
+            $this->warn(' You are running in production mode. Please be careful!');
+            $result = $this->confirm('Do you want to continue?');
+            if (!$result) {
+                $this->warn('Operation cancelled.');
+
+                return;
+            }
+        }
+
         $file = File::createFileFromString(base_path('app/Controllers'), $this->argument('name'), '.php');
         if (!$file) {
             $this->error('Controller already exists');

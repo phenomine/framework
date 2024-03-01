@@ -7,6 +7,7 @@
 |
 */
 
+use Phenomine\Support\Env;
 use Phenomine\Support\File;
 use Phenomine\Support\Request;
 use Phenomine\Support\Str;
@@ -242,5 +243,19 @@ if (!function_exists('redirect')) {
     function redirect($uri)
     {
         return header('Location: '.$uri);
+    }
+}
+
+if (!function_exists('env')) {
+    /**
+     * Get the env key-value.
+     *
+     * @param string $key
+     *
+     * @return string
+     */
+    function env(string $key, $default = null)
+    {
+        return Env::get($key, $default);
     }
 }

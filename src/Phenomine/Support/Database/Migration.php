@@ -43,14 +43,14 @@ class Migration
             ->primary();
     }
 
-    public function string($name, $length = 12)
+    public function string($name, $length = 255)
     {
         return $this->addColumn($name, ColumnType::STRING, $length);
     }
 
-    public function integer($name, $length = 11)
+    public function integer($name, $length = 12)
     {
-        return $this->addColumn($name, ColumnType::INT, $length);
+        return $this->addColumn($name, ColumnType::INTEGER, $length);
     }
 
     public function char($name, $length = 1)

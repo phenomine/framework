@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$exception['message']} | The Phenomine Framework</title>
+    <link rel="shortcut icon" href="data:image/svg+xml;base64,//48AD8AeABtAGwAIAB2AGUAcgBzAGkAbwBuAD0AIgAxAC4AMAAiACAAZQBuAGMAbwBkAGkAbgBnAD0AIgBVAFQARgAtADEANgAiAD8APgANAAoAPAAhAEQATwBDAFQAWQBQAEUAIABzAHYAZwAgAFAAVQBCAEwASQBDACAAIgAtAC8ALwBXADMAQwAvAC8ARABUAEQAIABTAFYARwAgADEALgAxAC8ALwBFAE4AIgAgACIAaAB0AHQAcAA6AC8ALwB3AHcAdwAuAHcAMwAuAG8AcgBnAC8ARwByAGEAcABoAGkAYwBzAC8AUwBWAEcALwAxAC4AMQAvAEQAVABEAC8AcwB2AGcAMQAxAC4AZAB0AGQAIgA+AA0ACgA8ACEALQAtACAAQwByAGUAYQB0AG8AcgA6ACAAQwBvAHIAZQBsAEQAUgBBAFcAIAAyADAAMgAxACAAKAA2ADQALQBCAGkAdAApACAALQAtAD4ADQAKADwAcwB2AGcAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AdwB3AHcALgB3ADMALgBvAHIAZwAvADIAMAAwADAALwBzAHYAZwAiACAAeABtAGwAOgBzAHAAYQBjAGUAPQAiAHAAcgBlAHMAZQByAHYAZQAiACAAdwBpAGQAdABoAD0AIgAyADAAMABwAHgAIgAgAGgAZQBpAGcAaAB0AD0AIgAyADAAMABwAHgAIgAgAHYAZQByAHMAaQBvAG4APQAiADEALgAxACIAIABzAHQAeQBsAGUAPQAiAHMAaABhAHAAZQAtAHIAZQBuAGQAZQByAGkAbgBnADoAZwBlAG8AbQBlAHQAcgBpAGMAUAByAGUAYwBpAHMAaQBvAG4AOwAgAHQAZQB4AHQALQByAGUAbgBkAGUAcgBpAG4AZwA6AGcAZQBvAG0AZQB0AHIAaQBjAFAAcgBlAGMAaQBzAGkAbwBuADsAIABpAG0AYQBnAGUALQByAGUAbgBkAGUAcgBpAG4AZwA6AG8AcAB0AGkAbQBpAHoAZQBRAHUAYQBsAGkAdAB5ADsAIABmAGkAbABsAC0AcgB1AGwAZQA6AGUAdgBlAG4AbwBkAGQAOwAgAGMAbABpAHAALQByAHUAbABlADoAZQB2AGUAbgBvAGQAZAAiAA0ACgB2AGkAZQB3AEIAbwB4AD0AIgAwACAAMAAgADIAMAAwACAAMgAwADAAIgANAAoAIAB4AG0AbABuAHMAOgB4AGwAaQBuAGsAPQAiAGgAdAB0AHAAOgAvAC8AdwB3AHcALgB3ADMALgBvAHIAZwAvADEAOQA5ADkALwB4AGwAaQBuAGsAIgANAAoAIAB4AG0AbABuAHMAOgB4AG8AZABtAD0AIgBoAHQAdABwADoALwAvAHcAdwB3AC4AYwBvAHIAZQBsAC4AYwBvAG0ALwBjAG8AcgBlAGwAZAByAGEAdwAvAG8AZABtAC8AMgAwADAAMwAiAD4ADQAKACAAPABkAGUAZgBzAD4ADQAKACAAIAA8AHMAdAB5AGwAZQAgAHQAeQBwAGUAPQAiAHQAZQB4AHQALwBjAHMAcwAiAD4ADQAKACAAIAAgADwAIQBbAEMARABBAFQAQQBbAA0ACgAgACAAIAAgAC4AZgBpAGwAMAAgAHsAZgBpAGwAbAA6ACMARQA1AEMAQgA4ADQAfQANAAoAIAAgACAAXQBdAD4ADQAKACAAIAA8AC8AcwB0AHkAbABlAD4ADQAKACAAPAAvAGQAZQBmAHMAPgANAAoAIAA8AGcAIABpAGQAPQAiAEwAYQB5AGUAcgBfAHgAMAAwADIAMABfADEAIgA+AA0ACgAgACAAPABtAGUAdABhAGQAYQB0AGEAIABpAGQAPQAiAEMAbwByAGUAbABDAG8AcgBwAEkARABfADAAQwBvAHIAZQBsAC0ATABhAHkAZQByACIALwA+AA0ACgAgACAAPABnACAAaQBkAD0AIgBfADIANAAxADIAMAA2ADQAMwA4ADcAMAA1ADYAIgA+AA0ACgAgACAAIAA8AHAAYQB0AGgAIABjAGwAYQBzAHMAPQAiAGYAaQBsADAAIgAgAGQAPQAiAE0AMQAwADAAIAAyADAALgAzADkAYwA0ADMALgA5ADcALAAwACAANwA5AC4ANgAxACwAMwA1AC4ANgA0ACAANwA5AC4ANgAxACwANwA5AC4ANgAxACAAMAAsADQAMwAuADkANwAgAC0AMwA1AC4ANgA0ACwANwA5AC4ANgAxACAALQA3ADkALgA2ADEALAA3ADkALgA2ADEAIAAtADkALgA3ADcALAAwACAALQAxADkALgAxADMALAAtADEALgA3ADcAIAAtADIANwAuADcAOAAsAC0ANAAuADkAOQBsADAAIAAtADMAMAAuADAANABjADgALgAwADYALAA1AC4AMAA0ACAAMQA3AC4ANQA4ACwANwAuADkANQAgADIANwAuADcAOAAsADcALgA5ADUAIAAyADkALgAwADEALAAwACAANQAyAC4ANQAzACwALQAyADMALgA1ADIAIAA1ADIALgA1ADMALAAtADUAMgAuADUAMwAgADAALAAtADIAOQAuADAAMQAgAC0AMgAzAC4ANQAyACwALQA1ADIALgA1ADMAIAAtADUAMgAuADUAMwAsAC0ANQAyAC4ANQAzACAALQAyADgALgAxADUALAAwACAALQA1ADEALgAxADMALAAyADIALgAxADQAIAAtADUAMgAuADQANgAsADQAOQAuADkANgBsAC0AMAAuADAANwAgADAAIAAwACAAMgAuADUANwAgADAAIAA1ADkALgA4ADIAYwAtADEANgAuADYALAAtADEANAAuADUAOQAgAC0AMgA3AC4AMAA4ACwALQAzADUALgA5ADgAIAAtADIANwAuADAAOAAsAC0ANQA5AC4AOAAyACAAMAAsAC0ANAAzAC4AOQA3ACAAMwA1AC4ANgA0ACwALQA3ADkALgA2ADEAIAA3ADkALgA2ADEALAAtADcAOQAuADYAMQB6ACIALwA+AA0ACgAgACAAIAA8AGMAaQByAGMAbABlACAAYwBsAGEAcwBzAD0AIgBmAGkAbAAwACIAIABjAHgAPQAiADEAMAAwACIAIABjAHkAPQAiADEAMAAwACIAIAByAD0AIgAyADgALgA3ADIAIgAvAD4ADQAKACAAIAA8AC8AZwA+AA0ACgAgADwALwBnAD4ADQAKADwALwBzAHYAZwA+AA0ACgA=" />
+    <style>
+        body {
+            padding: 2rem;
+            align-items: center;
+            background-color: #1a1d20;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            min-height: 100%;
+            color: #dee2e6;
+        }
+
+        .mt-0 {
+            margin-top: 0;
+        }
+
+        .mb-0 {
+            margin-bottom: 0;
+        }
+
+        .m-0 {
+            margin: 0;
+        }
+
+        .card {
+            background-color: #212529;
+            border-radius: 0.25rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-footer {
+            padding: 1rem 2rem;
+            background-color: #343a40;
+        }
+
+        .badge {
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            line-height: 1;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .bg-secondary {
+            background-color: #343a40;
+            color: #aeb2b6;
+        }
+
+        .message {
+            font-size: 1.25rem;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        .mt-1 {
+            margin-top: 0.25rem;
+        }
+
+        .me-1 {
+            margin-right: 0.25rem;
+        }
+
+        .me-2 {
+            margin-right: 0.5rem;
+        }
+
+        .me-3 {
+            margin-right: 1rem;
+        }
+
+        .me-4 {
+            margin-right: 1.5rem;
+        }
+
+        .me-5 {
+            margin-right: 3rem;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .mt-3 {
+            margin-top: 1rem;
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem;
+        }
+
+        .mt-5 {
+            margin-top: 3rem;
+        }
+
+        .text-secondary {
+            color: #6c757d;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
+
+        .text-secondary a {
+            color: #6c757d;
+            text-decoration: none;
+        }
+
+        .text-secondary a:hover {
+            color: #6c757d;
+            text-decoration: underline;
+        }
+
+        .justify-content-end {
+            justify-content: flex-end;
+        }
+
+        .justify-content-center {
+            justify-content: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-body">
+            <span class="badge bg-secondary">{$exception['type']}</span>
+            <p class="message">{$exception['message']}</p>
+            <p class="m-0 mt-1 text-secondary">{$exception['file']} on line {$exception['line']}</p>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex">
+                    <img class="me-2" alt="Phenomine" height="20px" src="data:image/svg+xml;base64,//48AD8AeABtAGwAIAB2AGUAcgBzAGkAbwBuAD0AIgAxAC4AMAAiACAAZQBuAGMAbwBkAGkAbgBnAD0AIgBVAFQARgAtADEANgAiAD8APgANAAoAPAAhAEQATwBDAFQAWQBQAEUAIABzAHYAZwAgAFAAVQBCAEwASQBDACAAIgAtAC8ALwBXADMAQwAvAC8ARABUAEQAIABTAFYARwAgADEALgAxAC8ALwBFAE4AIgAgACIAaAB0AHQAcAA6AC8ALwB3AHcAdwAuAHcAMwAuAG8AcgBnAC8ARwByAGEAcABoAGkAYwBzAC8AUwBWAEcALwAxAC4AMQAvAEQAVABEAC8AcwB2AGcAMQAxAC4AZAB0AGQAIgA+AA0ACgA8ACEALQAtACAAQwByAGUAYQB0AG8AcgA6ACAAQwBvAHIAZQBsAEQAUgBBAFcAIAAyADAAMgAxACAAKAA2ADQALQBCAGkAdAApACAALQAtAD4ADQAKADwAcwB2AGcAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AdwB3AHcALgB3ADMALgBvAHIAZwAvADIAMAAwADAALwBzAHYAZwAiACAAeABtAGwAOgBzAHAAYQBjAGUAPQAiAHAAcgBlAHMAZQByAHYAZQAiACAAdwBpAGQAdABoAD0AIgAyADAAMABwAHgAIgAgAGgAZQBpAGcAaAB0AD0AIgAyADAAMABwAHgAIgAgAHYAZQByAHMAaQBvAG4APQAiADEALgAxACIAIABzAHQAeQBsAGUAPQAiAHMAaABhAHAAZQAtAHIAZQBuAGQAZQByAGkAbgBnADoAZwBlAG8AbQBlAHQAcgBpAGMAUAByAGUAYwBpAHMAaQBvAG4AOwAgAHQAZQB4AHQALQByAGUAbgBkAGUAcgBpAG4AZwA6AGcAZQBvAG0AZQB0AHIAaQBjAFAAcgBlAGMAaQBzAGkAbwBuADsAIABpAG0AYQBnAGUALQByAGUAbgBkAGUAcgBpAG4AZwA6AG8AcAB0AGkAbQBpAHoAZQBRAHUAYQBsAGkAdAB5ADsAIABmAGkAbABsAC0AcgB1AGwAZQA6AGUAdgBlAG4AbwBkAGQAOwAgAGMAbABpAHAALQByAHUAbABlADoAZQB2AGUAbgBvAGQAZAAiAA0ACgB2AGkAZQB3AEIAbwB4AD0AIgAwACAAMAAgADIAMAAwACAAMgAwADAAIgANAAoAIAB4AG0AbABuAHMAOgB4AGwAaQBuAGsAPQAiAGgAdAB0AHAAOgAvAC8AdwB3AHcALgB3ADMALgBvAHIAZwAvADEAOQA5ADkALwB4AGwAaQBuAGsAIgANAAoAIAB4AG0AbABuAHMAOgB4AG8AZABtAD0AIgBoAHQAdABwADoALwAvAHcAdwB3AC4AYwBvAHIAZQBsAC4AYwBvAG0ALwBjAG8AcgBlAGwAZAByAGEAdwAvAG8AZABtAC8AMgAwADAAMwAiAD4ADQAKACAAPABkAGUAZgBzAD4ADQAKACAAIAA8AHMAdAB5AGwAZQAgAHQAeQBwAGUAPQAiAHQAZQB4AHQALwBjAHMAcwAiAD4ADQAKACAAIAAgADwAIQBbAEMARABBAFQAQQBbAA0ACgAgACAAIAAgAC4AZgBpAGwAMAAgAHsAZgBpAGwAbAA6ACMARQA1AEMAQgA4ADQAfQANAAoAIAAgACAAXQBdAD4ADQAKACAAIAA8AC8AcwB0AHkAbABlAD4ADQAKACAAPAAvAGQAZQBmAHMAPgANAAoAIAA8AGcAIABpAGQAPQAiAEwAYQB5AGUAcgBfAHgAMAAwADIAMABfADEAIgA+AA0ACgAgACAAPABtAGUAdABhAGQAYQB0AGEAIABpAGQAPQAiAEMAbwByAGUAbABDAG8AcgBwAEkARABfADAAQwBvAHIAZQBsAC0ATABhAHkAZQByACIALwA+AA0ACgAgACAAPABnACAAaQBkAD0AIgBfADIANAAxADIAMAA2ADQAMwA4ADcAMAA1ADYAIgA+AA0ACgAgACAAIAA8AHAAYQB0AGgAIABjAGwAYQBzAHMAPQAiAGYAaQBsADAAIgAgAGQAPQAiAE0AMQAwADAAIAAyADAALgAzADkAYwA0ADMALgA5ADcALAAwACAANwA5AC4ANgAxACwAMwA1AC4ANgA0ACAANwA5AC4ANgAxACwANwA5AC4ANgAxACAAMAAsADQAMwAuADkANwAgAC0AMwA1AC4ANgA0ACwANwA5AC4ANgAxACAALQA3ADkALgA2ADEALAA3ADkALgA2ADEAIAAtADkALgA3ADcALAAwACAALQAxADkALgAxADMALAAtADEALgA3ADcAIAAtADIANwAuADcAOAAsAC0ANAAuADkAOQBsADAAIAAtADMAMAAuADAANABjADgALgAwADYALAA1AC4AMAA0ACAAMQA3AC4ANQA4ACwANwAuADkANQAgADIANwAuADcAOAAsADcALgA5ADUAIAAyADkALgAwADEALAAwACAANQAyAC4ANQAzACwALQAyADMALgA1ADIAIAA1ADIALgA1ADMALAAtADUAMgAuADUAMwAgADAALAAtADIAOQAuADAAMQAgAC0AMgAzAC4ANQAyACwALQA1ADIALgA1ADMAIAAtADUAMgAuADUAMwAsAC0ANQAyAC4ANQAzACAALQAyADgALgAxADUALAAwACAALQA1ADEALgAxADMALAAyADIALgAxADQAIAAtADUAMgAuADQANgAsADQAOQAuADkANgBsAC0AMAAuADAANwAgADAAIAAwACAAMgAuADUANwAgADAAIAA1ADkALgA4ADIAYwAtADEANgAuADYALAAtADEANAAuADUAOQAgAC0AMgA3AC4AMAA4ACwALQAzADUALgA5ADgAIAAtADIANwAuADAAOAAsAC0ANQA5AC4AOAAyACAAMAAsAC0ANAAzAC4AOQA3ACAAMwA1AC4ANgA0ACwALQA3ADkALgA2ADEAIAA3ADkALgA2ADEALAAtADcAOQAuADYAMQB6ACIALwA+AA0ACgAgACAAIAA8AGMAaQByAGMAbABlACAAYwBsAGEAcwBzAD0AIgBmAGkAbAAwACIAIABjAHgAPQAiADEAMAAwACIAIABjAHkAPQAiADEAMAAwACIAIAByAD0AIgAyADgALgA3ADIAIgAvAD4ADQAKACAAIAA8AC8AZwA+AA0ACgAgADwALwBnAD4ADQAKADwALwBzAHYAZwA+AA0ACgA="/>
+                    <p class="m-0 text-secondary">v.{Phenomine\Support\Application::VERSION}</p>
+                </div>
+                <p class="m-0 text-secondary">
+                    PHP {phpversion()}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="m-0">Stack Trace</h5>
+            <pre>{$exception['traceAsString']}</pre>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <p class="m-0"><small class="text-secondary">The Phenomine Framework</small></p>
+        <p class="m-0"><small class="text-secondary">Built in Indonesia by <a href="https://github.com/fahlisaputra">@fahlisaputra</a></p>
+    </div>
+</body>
+</html>

@@ -14,6 +14,17 @@ class RollbackMigrationCommand extends Command
 
     public function handle()
     {
+        if (config('app.env') == 'production') {
+            $this->newLine();
+            $this->warn(' You are running in production mode. Please be careful!');
+            $result = $this->confirm('Do you want to continue?');
+            if (!$result) {
+                $this->warn('Operation cancelled.');
+
+                return;
+            }
+        }
+
         $this->runner = new MigrationRunner();
 
         $this->info('Running rollback...');

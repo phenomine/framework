@@ -175,7 +175,7 @@ class Str
         return $randomString;
     }
 
-    public static function randomUuidV4()
+    public static function uuid()
     {
         return sprintf(
             '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',

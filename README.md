@@ -1,11 +1,17 @@
 
 <p align="center"><a href="https://github.com/phenomine/phenomine" target="_blank"><img src="/assets/phenomine_text_logo.svg" width="400"></a></p>
 
+<p align="center">
+<a href="https://packagist.org/packages/phenomine/framework"><img src="https://img.shields.io/packagist/dt/phenomine/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/phenomine/framework"><img src="https://img.shields.io/packagist/v/phenomine/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/phenomine/framework"><img src="https://img.shields.io/packagist/l/phenomine/framework" alt="License"></a>
+</p>
+
 ## The Phenomine Framework
 
 > **Note:** This repository contains the core code of the Phenomine framework. If you want to build an application using Phenomine, visit the main [Phenomine repository](https://github.com/phenomine/phenomine).
 
-Phenomine is a simple, fast, and powerful PHP framework. It is built on top of several Symfony components, and provides a development framework that makes common tasks such as authentication, routing, sessions and caching much easier to implement.
+Phenomine stands at the forefront of innovation in the realm of PHP development, offering a robust and efficient Model-View-Controller (MVC) framework. Designed with a commitment to excellence, Phenomine empowers developers with a versatile toolkit, combining power, speed, and simplicity for a seamless development experience.
 
 ## Code of Conduct
 
@@ -18,3 +24,5 @@ Please review [our security policy](https://github.com/phenomine/framework/secur
 ## License
 
 The Phenomine framework is open-sourced software licensed under the [MIT license](LICENSE.md).
+
+## 

@@ -262,6 +262,10 @@ class Request
     public static function abort($code)
     {
         http_response_code($code);
+
+        // abort and remove all response buffer
+        ob_end_clean();
+
         $view = new View(__DIR__.'/../views');
         $view->render('errors.'.$code);
         exit;

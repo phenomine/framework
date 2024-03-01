@@ -3,6 +3,7 @@
 namespace Phenomine\Support;
 
 use Phenomine\Contracts\Application\ApplicationContract;
+use Phenomine\Support\Exceptions\ExceptionHandler;
 
 class Application extends ApplicationContract
 {
@@ -13,6 +14,8 @@ class Application extends ApplicationContract
             $_app = $this;
             $this->console->run();
         } else {
+            ob_start(); // start output buffering
+
             global $_app;
             $this->request = new Request($this);
             $_app = $this;
@@ -20,14 +23,40 @@ class Application extends ApplicationContract
         }
     }
 
+    public function prepare()
+    {
+        $handler = new ExceptionHandler();
+
+        set_error_handler([$handler, 'errorHandler']);
+        set_exception_handler([$handler, 'exceptionHandler']);
+    }
+
     public function init()
     {
+        $this->prepare();
+        new Env(); // load .env file
+        $env = env('APP_ENV', '');
+        if ($env == '') {
+            throw new \Exception('Application environment not set correctly. Please check your configuration before running application.');
+        }
+
+        if ($env == 'production') {
+            error_reporting(0);
+            ini_set('display_errors', 0);
+            ini_set('log_errors', 1);
+        } else {
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
+            ini_set('log_errors', 1);
+        }
+
         $this->loadRoutes();
         $this->route = Route::predictRoute();
     }
 
     public function initConsole()
     {
+        new Env(); // load .env file
         $this->loadRoutes();
     }
 
